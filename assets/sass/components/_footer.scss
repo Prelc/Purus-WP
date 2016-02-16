@@ -1,0 +1,29 @@
+/* Footer */
+.footer {
+	font-family: $secondary-font;
+	font-size: ptr(14);
+	text-align: center;
+	border-top: 1px solid rgba(0, 0, 0, .07);
+
+	&-container {
+		flex: none;
+	}
+
+	&__left {
+		padding: ptr(10) 0 ptr(3);
+
+		@include media-breakpoint-up(lg) {
+			float: left;
+			padding: ptr(33.5) 0;
+		}
+	}
+
+	&__right {
+		padding: ptr(3) 0 ptr(10);
+
+		@include media-breakpoint-up(lg) {
+			float: right;
+			padding: ptr(33.5) 0;
+		}
+	}
+}

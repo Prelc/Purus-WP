@@ -1,0 +1,46 @@
+/* Tags */
+.tags {
+  position: relative;
+  margin-top: ptr(81);
+
+  &__title {
+    margin-bottom: ptr(45);
+
+    @include media-breakpoint-up(lg) {
+      letter-spacing: 0;
+      position: absolute;
+      border-top: 1px solid rgba(0, 0, 0, .07);
+      color: $gray;
+      top: 0;
+      left: -228px;
+      width: 183px;
+      margin-right: 45px;
+      padding-top: 21px;
+      font-size: 14px;
+      font-weight: normal;
+      text-align: right;
+      margin-bottom: 0;
+    }
+  }
+
+  &__items {
+    padding-top: 12px;
+  }
+
+  a {
+    display: inline-block;
+    font-size: 14px;
+    border-radius: $border-radius;
+    background-color: $gray-lighter;
+    font-family: $secondary-font;
+    color: $gray;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding: 6px 10px 7px;
+
+    &:hover {
+      text-decoration: none;
+      color: $gray-dark;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+/* Page Header */
+.page-header {
+  background-color: $gray-lightest;
+  border-radius: $border-radius;
+  padding: ptr(25) ptr(32) ptr(27);
+  margin-bottom: ptr(76);
+  margin-top: ptr(15);
+
+  .page-title {
+    margin-bottom: 0;
+    font-size: ptr(32);
+  }
+
+  .taxonomy-description {
+    p {
+      margin-top: ptr(10);
+      margin-bottom: 0;
+    }
+  }
+}

@@ -1,0 +1,199 @@
+/* Hentry */
+.hentry {
+	margin-bottom: ptr(60);
+
+	&::before,
+	&::after {
+		content: '';
+		display: table;
+		clear: both;
+	}
+
+	&:last-of-type {
+		margin-bottom: 0;
+	}
+
+	&__content {
+		position: relative;
+
+		> p,
+		> dl,
+		> dd,
+		> ul,
+		> ol {
+			&:first-child {
+				margin-top: -8px;
+			}
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		> img,
+		> figure,
+		> table,
+		> pre,
+		> pre[class*="language-"],
+		> .embed-responsive,
+		> .mejs-container {
+			&:first-child {
+				margin-top: 0;
+			}
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		@include media-breakpoint-up(lg) {
+			float: right;
+			width: 450px;
+		}
+
+		@include media-breakpoint-up(xl) {
+			width: 650px;
+		}
+	}
+
+	&__title {
+		word-wrap: break-word;
+
+		a {
+			color: $gray-dark;
+
+			&:hover {
+				text-decoration: none;
+				color: $brand-primary;
+			}
+		}
+
+		.hentry & {
+			margin-bottom: ptr(38);
+		}
+	}
+
+	&__featured-image {
+		.hentry & {
+			margin-bottom: ptr(34);
+			margin-top: 0;
+		}
+	}
+
+	&__footer {
+		margin-top: 25px;
+
+		@include media-breakpoint-up(lg) {
+			float: left;
+			margin-top: 0;
+			margin-left: -228px;
+			width: 183px;
+		}
+	}
+
+	.more-link {
+		display: inline-block;
+		color: #ffffff;
+		font-family: $secondary-font;
+		background-color: $brand-primary;
+		font-size: 14px;
+		padding: ptr(11) ptr(20);
+		border-radius: $border-radius;
+		margin-top: ptr(12);
+		margin-bottom: ptr(17);
+
+		&:focus,
+		&:hover {
+			text-decoration: none;
+			background-color: darken($brand-primary, 5);
+		}
+	}
+
+	// Content Margins
+	h1, h2, h3, h4, h5, h6 {
+		margin-bottom: ptr(26);
+	}
+
+	// Content Margins
+	blockquote {
+		margin-bottom: ptr(33);
+	}
+
+	// Content Margins
+	dl,
+	dd,
+	ul,
+	ol,
+	p {
+		margin-bottom: ptr(24);
+
+		+ blockquote {
+			margin-top: ptr(36);
+		}
+
+		+ h1,
+		+ h2,
+		+ h3,
+		+ h4,
+		+ h5,
+		+ h6 {
+			margin-top: ptr(38);
+		}
+	}
+
+	li {
+		ul,
+		ol {
+			margin-bottom: 0;
+		}
+	}
+
+	// Content Margins
+	pre,
+	pre[class*="language-"],
+	img,
+	figure,
+	table,
+	.embed-responsive,
+	.mejs-container {
+		margin-top: ptr(36);
+		margin-bottom: ptr(33);
+
+		+ h1,
+		+ h2,
+		+ h3,
+		+ h4,
+		+ h5,
+		+ h6 {
+			margin-top: ptr(46);
+		}
+	}
+
+	p {
+		> a > img {
+			display: inline-block;
+			margin-top: 7px;
+			margin-bottom: 9px;
+		}
+
+		> img {
+			margin-top: 12px;
+			margin-bottom: 9px;
+			display: inline-block;
+		}
+	}
+
+	.alignleft,
+	.alignright {
+		margin-top: 8px;
+		margin-bottom: 8px;
+	}
+
+	// Content Margins
+	figure {
+		img {
+			margin-top: 0;
+			margin-bottom: 0;
+		}
+	}
+}

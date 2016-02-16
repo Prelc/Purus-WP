@@ -1,0 +1,184 @@
+/*
+Theme Name: Purus
+Theme URI: http://www.prelc.si/purus
+Author: Marko Prelec
+Author URI: http://www.prelc.si
+Version: 1.0.0
+Description: Clean and simple WordPress blog theme focused on readability.
+Tags: white, blue, red, black, light, one-column, responsive-layout, custom-background, custom-colors, custom-menu, featured-images, sticky-post, theme-options, threaded-comments, translation-ready
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text domain: purus
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+*/
+
+/*------------------------------------*\
+	01. Project variables
+
+	only visible in SASS source files
+\*------------------------------------*/
+
+@import 'vars';
+
+/*------------------------------------*\
+	02. Twitter Bootstrap
+
+	Remove what is not necessary
+\*------------------------------------*/
+
+// Core variables and mixins
+@import 'bower_components/bootstrap/scss/variables';
+@import 'bower_components/bootstrap/scss/mixins';
+
+// // Reset and dependencies
+@import 'bower_components/bootstrap/scss/normalize';
+@import 'bower_components/bootstrap/scss/print';
+
+// Core CSS
+@import 'bower_components/bootstrap/scss/reboot';
+@import 'bower_components/bootstrap/scss/type';
+@import 'bower_components/bootstrap/scss/images';
+@import 'bower_components/bootstrap/scss/code';
+@import 'bower_components/bootstrap/scss/grid';
+@import 'bower_components/bootstrap/scss/tables';
+@import 'bower_components/bootstrap/scss/forms';
+@import 'bower_components/bootstrap/scss/buttons';
+
+// // Components
+@import 'bower_components/bootstrap/scss/animation';
+@import 'bower_components/bootstrap/scss/dropdown';
+// @import 'bower_components/bootstrap/scss/button-group';
+// @import 'bower_components/bootstrap/scss/input-group';
+@import 'bower_components/bootstrap/scss/custom-forms';
+// @import 'bower_components/bootstrap/scss/nav';
+@import 'bower_components/bootstrap/scss/navbar';
+// @import 'bower_components/bootstrap/scss/card';
+// @import 'bower_components/bootstrap/scss/breadcrumb';
+// @import 'bower_components/bootstrap/scss/pagination';
+// @import 'bower_components/bootstrap/scss/pager';
+// @import 'bower_components/bootstrap/scss/labels';
+// @import 'bower_components/bootstrap/scss/jumbotron';
+// @import 'bower_components/bootstrap/scss/alert';
+// @import 'bower_components/bootstrap/scss/progress';
+// @import 'bower_components/bootstrap/scss/media';
+// @import 'bower_components/bootstrap/scss/list-group';
+// @import 'bower_components/bootstrap/scss/close';
+@import 'bower_components/bootstrap/scss/responsive-embed';
+
+// Components w/ JavaScript
+// @import 'bower_components/bootstrap/scss/modal';
+// @import 'bower_components/bootstrap/scss/tooltip';
+// @import 'bower_components/bootstrap/scss/popover';
+// @import 'bower_components/bootstrap/scss/carousel';
+
+// Utility classes
+@import 'bower_components/bootstrap/scss/utilities';
+@import 'bower_components/bootstrap/scss/utilities-spacing';
+@import 'bower_components/bootstrap/scss/utilities-responsive';
+
+
+/*------------------------------------*\
+	03. Tags
+\*------------------------------------*/
+
+html {
+	font-size: 16px;
+
+	@include media-breakpoint-up(lg) {
+		height: 100%;
+		font-size: 18px;
+	}
+}
+
+body {
+	display: flex;
+	height: 100%;
+	flex-direction: column;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	letter-spacing: -0.5px;
+}
+
+img,
+figure {
+	max-width: 100%;
+	height: auto;
+}
+
+blockquote {
+	border-left: ptr(3) solid $brand-primary;
+	padding-left: ptr(20);
+	font-style: italic;
+}
+
+// Syntax highliter
+pre[class*="language-"] {
+	word-wrap: break-word;
+
+	&[data-language]::before {
+		font-size: ptr(12);
+	}
+}
+
+/*------------------------------------*\
+	04. Helpers and very general classes
+\*------------------------------------*/
+
+.screen-reader-text {
+	@extend .sr-only;
+}
+
+.content-area {
+	margin-bottom: ptr(50);
+	flex: 1 0 auto;
+	width: 100%;
+
+	@include media-breakpoint-up(lg) {
+		margin-bottom: ptr(80);
+	}
+}
+
+.site-main {
+	@include media-breakpoint-up(lg) {
+		margin: 0 ptr(228);
+	}
+}
+
+.embed-responsive-13by8 {
+  padding-bottom: percentage(8 / 13);
+}
+
+/*------------------------------------*\
+	05. Components
+\*------------------------------------*/
+
+// Layout
+@import 'components/header';
+@import 'components/footer';
+@import 'components/error-404';
+
+// Elements
+@import 'components/main-navigation';
+@import 'components/page-header';
+@import 'components/pagination';
+@import 'components/search';
+
+// WordPress Specific
+@import 'components/wp';
+@import 'components/wp-widgets';
+@import 'components/meta';
+@import 'components/tags';
+@import 'components/description';
+@import 'components/comments';
+@import 'components/hentry';
+@import 'components/sticky';
+@import 'components/post-formats';
+
+/*------------------------------------*\
+	The End :)
+\*------------------------------------*/
+
+/*# sourceMappingURL=style.css.map */

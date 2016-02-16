@@ -1,0 +1,13 @@
+/* Sticky */
+.sticky {
+  background-color: $gray-lightest;
+  border-radius: $border-radius;
+
+  .hentry__header {
+    padding: ptr(31) ptr(45) 0;
+  }
+
+  .hentry__content {
+    padding: 0 ptr(45) ptr(28);
+  }
+}

@@ -1,0 +1,262 @@
+/* WordPress Specific */
+
+// Styles from WP core
+// @see http://codex.wordpress.org/CSS
+.alignnone,
+.aligncenter,
+.alignright,
+.alignleft {
+	max-width: 100%;
+	height: auto;
+
+	img {
+		max-width: 100%;
+		height: auto;
+	}
+}
+
+.alignnone {
+}
+
+.aligncenter {
+	display: block;
+	margin: 5px auto;
+}
+
+.alignright {
+	float: right;
+	margin-left: 20px;
+}
+
+.alignleft {
+	float: left;
+	margin-right: 20px;
+}
+
+a > img {
+	&.alignright {
+		display: block;
+		float: right;
+		margin-left: 20px;
+	}
+
+	&.alignnone {
+		display: block;
+		margin-right: 20px;
+	}
+
+	&.alignleft {
+		display: block;
+		float: left;
+		margin-right: 20px;
+	}
+
+	&.aligncenter {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+.wp-caption {
+	max-width: 100%; /* Image does not overflow the content area */
+	position: relative;
+	background-color: transparent;
+	color: $gray-light;
+	padding: 0;
+	font-size: ptr(14);
+	text-align: left;
+
+	&.alignleft {
+		.wp-caption-text {
+			@include media-breakpoint-up(lg) {
+				text-align: right;
+				margin-left: 0;
+				margin-right: 45px;
+				right: inherit;
+				left: -228px;
+			}
+		}
+	}
+
+	&-text {
+		padding-top: 10px;
+
+		@include media-breakpoint-up(lg) {
+			border-top: 1px solid rgba(0, 0, 0, .07);
+			position: absolute;
+			top: 0;
+			right: -228px;
+			width: 183px;
+			margin-left: 45px;
+			padding-top: 21px;
+		}
+	}
+
+	img {
+		border: 0 none;
+		height: auto;
+		margin: 0;
+		padding: 0;
+		width: auto;
+	}
+}
+
+// Gallery
+.gallery {
+	@include clearfix();
+	margin-bottom: 20px;
+
+	.hentry & figure {
+		margin-top: inherit;
+		margin-bottom: inherit;
+	}
+}
+
+.gallery-item {
+	float: left;
+	margin: 0 4px 4px 0;
+	overflow: hidden;
+	position: relative;
+}
+
+.gallery-columns-1 .gallery-item {
+	max-width: 100%;
+}
+
+.gallery-columns-2 .gallery-item {
+	max-width: calc(50% - 4px);
+}
+
+.gallery-columns-3 .gallery-item {
+	max-width: calc(33.3% - 4px);
+}
+
+.gallery-columns-4 .gallery-item {
+	max-width: calc(25% - 4px);
+}
+
+.gallery-columns-5 .gallery-item {
+	max-width: calc(20% - 4px);
+}
+
+.gallery-columns-6 .gallery-item {
+	max-width: calc(16.7% - 4px);
+}
+
+.gallery-columns-7 .gallery-item {
+	max-width: calc(14.28% - 4px);
+}
+
+.gallery-columns-8 .gallery-item {
+	max-width: calc(12.5% - 4px);
+}
+
+.gallery-columns-9 .gallery-item {
+	max-width: calc(11.1% - 4px);
+}
+
+.gallery-columns-1 .gallery-item:nth-of-type(1n),
+.gallery-columns-2 .gallery-item:nth-of-type(2n),
+.gallery-columns-3 .gallery-item:nth-of-type(3n),
+.gallery-columns-4 .gallery-item:nth-of-type(4n),
+.gallery-columns-5 .gallery-item:nth-of-type(5n),
+.gallery-columns-6 .gallery-item:nth-of-type(6n),
+.gallery-columns-7 .gallery-item:nth-of-type(7n),
+.gallery-columns-8 .gallery-item:nth-of-type(8n),
+.gallery-columns-9 .gallery-item:nth-of-type(9n) {
+	margin-right: 0;
+}
+
+.gallery-columns-1.gallery-size-medium figure.gallery-item:nth-of-type(1n+1),
+.gallery-columns-1.gallery-size-thumbnail figure.gallery-item:nth-of-type(1n+1),
+.gallery-columns-2.gallery-size-thumbnail figure.gallery-item:nth-of-type(2n+1),
+.gallery-columns-3.gallery-size-thumbnail figure.gallery-item:nth-of-type(3n+1) {
+	clear: left;
+}
+
+.gallery-caption {
+	background-color: rgba(0, 0, 0, .7);
+	color: #ffffff;
+	font-size: 12px;
+	line-height: 1.5;
+	margin: 0;
+	max-height: 50%;
+	opacity: 0;
+	padding: 6px 8px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	text-align: left;
+	width: 100%;
+}
+
+.gallery-caption::before {
+	content: '';
+	height: 100%;
+	min-height: 49px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+
+.gallery-item:hover .gallery-caption {
+	opacity: 1;
+}
+
+.gallery-columns-7 .gallery-caption,
+.gallery-columns-8 .gallery-caption,
+.gallery-columns-9 .gallery-caption {
+	display: none;
+}
+
+// needed classes for the theme check
+.bypostauthor {
+	position: static;
+}
+
+// tables
+table,
+th,
+td {
+	border: 1px solid $gray-lighter;
+}
+
+table {
+	border-collapse: separate;
+	border-spacing: 0;
+	border-width: 1px 0 0 1px;
+	margin: 0 0 ptr(30);
+	table-layout: fixed;
+	/* Prevents HTML tables from becoming too wide */
+	width: 100%;
+}
+
+caption,
+th,
+td {
+	font-weight: normal;
+	text-align: left;
+}
+
+th {
+	border-width: 0 1px 1px 0;
+	font-weight: bold;
+}
+
+td {
+	border-width: 0 1px 1px 0;
+}
+
+th,
+td {
+	padding: ptr(10);
+}
+
+// Pre
+pre {
+	padding: ptr(20);
+	border: 1px solid $gray;
+	border-radius: 4px;
+}

@@ -1,0 +1,135 @@
+/* Main Navigation */
+.main-navigation {
+	@include list-unstyled;
+	margin-bottom: 15px;
+	background-color: $gray-lightest;
+
+	@include media-breakpoint-up(lg) {
+		display: inline-block;
+		background-color: #ffffff;
+		margin-bottom: 0;
+	}
+
+	.menu-item {
+		@include media-breakpoint-up(lg) {
+			display: inline-block;
+		}
+
+		&:focus,
+		&:hover{
+			> .sub-menu {
+				visibility: visible;
+				opacity: 1;
+			}
+		}
+	}
+
+	> .menu-item {
+		&:last-of-type {
+			> a {
+				border-bottom: 0;
+				padding-right: 0;
+			}
+		}
+	}
+
+	a {
+		display: block;
+		padding: ptr(10) ptr(15);
+		font-family: $secondary-font;
+		font-size: 14px;
+		color: $gray;
+		border-bottom: 1px solid #ffffff;
+
+		@include media-breakpoint-up(lg) {
+			padding: ptr(33.5) ptr(14);
+			border-bottom: 0;
+		}
+
+		&:focus {
+			text-decoration: none;
+			color: $gray;
+		}
+
+		&:hover {
+			text-decoration: none;
+			color: $brand-primary;
+		}
+	}
+
+	// Sub-menu items.
+	.sub-menu {
+		@include list-unstyled;
+		z-index: 10;
+
+		@include media-breakpoint-up(lg) {
+			position: absolute;
+			visibility: hidden;
+			opacity: 0;
+		}
+
+		.menu-item {
+			display: block;
+
+			&:focus,
+			&:hover {
+				> .sub-menu {
+					visibility: visible;
+					opacity: 1;
+				}
+			}
+		}
+
+		a {
+			display: block;
+			padding-left: ptr(30);
+
+			@include media-breakpoint-up(lg) {
+				padding: ptr(10.5) ptr(30) ptr(10.5) ptr(14);
+				min-width: ptr(150);
+				white-space: nowrap;
+				background-color: $gray-lightest;
+				border-bottom: 1px solid #ffffff;
+			}
+		}
+
+		// 2. level + are opening next to each other.
+		.sub-menu {
+			left: 100%;
+			top: 0;
+
+			a {
+				padding-left: ptr(45);
+
+				@include media-breakpoint-up(lg) {
+					border-left: 1px solid #ffffff;
+					padding-left: ptr(14);
+				}
+			}
+		}
+
+		.sub-menu .sub-menu a {
+			padding-left: ptr(60);
+
+			@include media-breakpoint-up(lg) {
+				padding-left: ptr(14);
+			}
+		}
+
+		.sub-menu .sub-menu .sub-menu a {
+			padding-left: ptr(75);
+
+			@include media-breakpoint-up(lg) {
+				padding-left: ptr(14);
+			}
+		}
+
+		.sub-menu .sub-menu .sub-menu .sub-menu a {
+			padding-left: ptr(90);
+
+			@include media-breakpoint-up(lg) {
+				padding-left: ptr(14);
+			}
+		}
+	}
+}

@@ -1,0 +1,104 @@
+/* Meta */
+.meta {
+	font-size: ptr(14);
+	color: $gray-light;
+	margin-top: 16px;
+	display: inline;
+
+	@include media-breakpoint-up(lg) {
+		border-top: 1px solid rgba(0, 0, 0, .07);
+		margin-top: 0;
+		padding-top: ptr(21);
+		text-align: right;
+		display: block;
+	}
+
+	.single & {
+		margin-top: 29px;
+
+		@include media-breakpoint-up(lg) {
+			margin-top: 0;
+		}
+	}
+
+	&__item {
+		word-wrap: break-word;
+
+		@include media-breakpoint-down(md) {
+			position: relative;
+			padding-right: 10px;
+		}
+
+		a {
+			font-family: $secondary-font;
+			word-wrap: break-word;
+		}
+
+		&::after {
+			@include media-breakpoint-down(md) {
+				content: '/';
+				padding-left: 10px;
+				color: rgba(0, 0, 0, .25);
+			}
+		}
+
+		&:last-child {
+			&::after {
+				@include media-breakpoint-down(md) {
+					display: none;
+				}
+			}
+		}
+
+		@include media-breakpoint-up(lg) {
+			display: block;
+		}
+
+		&--author {
+			a {
+				color: $gray;
+
+				&:focus,
+				&:hover {
+					color: $gray;
+				}
+			}
+		}
+
+		&--comments {
+			color: $gray-light;
+
+			&:hover {
+				color: $gray-light;
+			}
+		}
+	}
+
+	&__author-avatar {
+		display: inline-block;
+
+		@include media-breakpoint-up(lg)  {
+			text-align: right;
+			display: block;
+		}
+
+		.hentry & {
+			.avatar {
+				border-radius: 50%;
+				width: 30px;
+				height: 30px;
+				margin-top: 0;
+				margin-bottom: 0;
+				margin-right: 10px;
+
+				@include media-breakpoint-up(lg) {
+					width: auto;
+					height: auto;
+					margin-top: 0;
+					margin-bottom: 30px;
+					margin-right: 0;
+				}
+			}
+		}
+	}
+}

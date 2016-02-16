@@ -1,0 +1,246 @@
+/* Comments */
+.comments {
+  position: relative;
+  font-family: $secondary-font;
+  margin-top: ptr(81);
+
+  .description + & {
+    margin-top: ptr(90);
+  }
+
+  &__title {
+    margin-bottom: ptr(45);
+
+    @include media-breakpoint-up(lg) {
+      letter-spacing: 0;
+      position: absolute;
+      border-top: 1px solid rgba(0, 0, 0, .07);
+      color: $gray;
+      top: 0;
+      left: -228px;
+      width: 183px;
+      margin-right: 45px;
+      padding-top: 21px;
+      font-size: 14px;
+      font-weight: normal;
+      text-align: right;
+      margin-bottom: 0;
+    }
+  }
+
+  &__list {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .children {
+    list-style: none;
+  }
+}
+
+.comment {
+  &-body {
+    position: relative;
+    margin-bottom: ptr(60);
+  }
+
+  &-meta {
+    display: inline-block;
+    width: 100%;
+
+    .comment-awaiting-moderation {
+      display: inline-block;
+      color: #bbbbbb;
+      font-size: 14px;
+      margin-bottom: 60px;
+    }
+  }
+
+  &-author {
+    .avatar {
+      border-radius: 50%;
+      margin-right: ptr(15);
+      margin-bottom: ptr(20);
+      float: left;
+    }
+
+    .says {
+      display: none;
+    }
+
+    .fn {
+      display: block;
+      padding-top: ptr(12);
+      vertical-align: top;
+      color: $gray-dark;
+      margin-right: ptr(15);
+
+      a {
+        color: $gray-dark;
+        vertical-align: top;
+      }
+    }
+  }
+
+  &-metadata {
+    font-size: ptr(14);
+    margin-bottom: ptr(10);
+    margin-top: ptr(-5);
+
+    a {
+      color: #bbbbbb;
+    }
+
+    .comment-edit-link {
+      color: $link-color;
+    }
+
+    time {
+      margin-right: ptr(10);
+    }
+  }
+
+  &-content {
+    border: 1px solid rgba(0, 0, 0, .07);
+    border-radius: $border-radius;
+    padding: ptr(19) ptr(30) ptr(59);
+    font-family: $primary-font;
+
+    > p {
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .reply {
+    position: absolute;
+    bottom: ptr(22);
+    left: ptr(30);
+
+    a {
+      font-size: ptr(14);
+      color: #bbbbbb;
+      font-family: $primary-font;
+
+      &:hover {
+        color: $link-color;
+      }
+    }
+  }
+
+  .comment-respond {
+    margin-bottom: 60px;
+
+    .form-submit {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.comment-respond {
+  position: relative;
+  margin-top: 81px;
+
+  .comments__list + & {
+    margin-top: 60px;
+  }
+
+  .comment-body + & {
+    margin-top: 0;
+  }
+
+  .comment-reply-title {
+    @include media-breakpoint-up(lg) {
+      letter-spacing: 0;
+      position: absolute;
+      border-top: 1px solid rgba(0, 0, 0, .07);
+      color: $gray;
+      top: 0;
+      left: -228px;
+      width: 183px;
+      margin-right: 45px;
+      padding-top: 21px;
+      font-size: 14px;
+      font-weight: normal;
+      text-align: right;
+    }
+
+    a {
+      margin-left: 10px;
+      font-size: 14px;
+    }
+  }
+
+  .comment-form {
+    padding-top: 18px;
+  }
+
+  .comment-notes,
+  .logged-in-as {
+    display: none;
+  }
+
+  label {
+    display: block;
+    font-size: 14px;
+  }
+
+  textarea {
+    width: 100%;
+  }
+
+  input {
+    width: 100%;
+
+    @include media-breakpoint-up(lg) {
+      width: 50%;
+    }
+  }
+
+  textarea,
+  input {
+    font-family: $primary-font;
+    font-size: 14px;
+    border: 1px solid $gray-lighter;
+    border-radius: $border-radius;
+    outline: none;
+    padding: 10px 18px;
+
+    &:focus {
+      border: 1px solid $gray-dark;
+      color: $gray-dark;
+    }
+  }
+
+  .comment-form-comment {
+    margin-bottom: ptr(13);
+  }
+
+  .comment-form-url,
+  .comment-form-email,
+  .comment-form-author {
+    margin-bottom: ptr(21);
+  }
+
+  .form-submit {
+    margin-top: 30px;
+    margin-bottom: 12px;
+  }
+
+  .submit {
+    width: auto;
+    font-family: $secondary-font;
+    background-color: $brand-primary;
+    color: #ffffff;
+    border-radius: $border-radius;
+    border-color: $brand-primary;
+
+    &:focus,
+    &:hover {
+      color: #ffffff;
+      border-color: darken($brand-primary, 5);
+      background-color: darken($brand-primary, 5);
+    }
+  }
+}

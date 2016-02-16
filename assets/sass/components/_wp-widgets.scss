@@ -1,0 +1,61 @@
+/* WordPress Widgets */
+
+/* Search Widget */
+.widget_search {
+	label {
+		width: 100%;
+		margin-bottom: ptr(5);
+
+		@include media-breakpoint-up(lg) {
+			float: left;
+			width: calc(75% - #{ptr(10)});
+			margin-bottom: 0;
+			margin-right: ptr(10);
+		}
+	}
+
+	.search-field {
+		width: 100%;
+		border: 1px solid rgba(0, 0, 0, .1);
+		background-color: transparent;
+		padding: ptr(7) ptr(5) ptr(5) ptr(20);
+		height: ptr(45);
+		border-radius: $border-radius;
+		outline: none;
+
+		&:focus {
+			background-color: #ffffff;
+			border: 1px solid rgba(0, 0, 0, .2);
+			border-radius: $border-radius;
+		}
+	}
+
+	.search-submit {
+		width: 100%;
+		height: ptr(45);
+		font-size: ptr(14);
+		background-color: $brand-primary;
+		border: 0;
+		color: #ffffff;
+		border-radius: $border-radius;
+		padding-top: ptr(3);
+
+		@include media-breakpoint-up(lg) {
+			width: 25%;
+		}
+
+		.fa {
+			vertical-align: 0;
+		}
+
+    &:focus,
+		&:hover {
+			background-color: darken($brand-primary, 5);
+		}
+
+		&:active {
+			background-color: darken($brand-primary, 8);
+			box-shadow: inset 0 1px 2px rgba(0, 0, 0, .125);
+		}
+	}
+}

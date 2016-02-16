@@ -1,0 +1,32 @@
+/* Specific post formats */
+
+// Post format Link
+.format-link {
+	.hentry__content {
+		p {
+			&:first-child {
+				margin-top: 0;
+			}
+
+			&:first-of-type {
+				a {
+					display: inline-block;
+					width: 100%;
+					background-color: $gray-lightest;
+					border-radius: $border-radius;
+					color: #555555;
+					padding: ptr(32) ptr(45) ptr(32);
+					transition: all 100ms ease-out;
+					word-wrap: break-word;
+					margin-bottom: ptr(9);
+
+					&:focus,
+					&:hover {
+						text-decoration: none;
+						color: $gray-dark;
+					}
+				}
+			}
+		}
+	}
+}

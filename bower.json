@@ -1,0 +1,19 @@
+{
+  "name": "purus-wp",
+  "authors": [
+    "Marko Prelec <mareprelc@gmail.com>"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "bootstrap": "v4.0.0-alpha.2"
+  },
+  "devDependencies": {
+    "requirejs": "~2.1.11",
+    "almond": "~0.3.0"
+  }
+}
