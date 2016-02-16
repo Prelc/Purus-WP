@@ -1,11 +1,11 @@
 Purus WordPress Theme
 ===
 
-### Preview Demo
+### Demo
 
 http://prelc.si/purus/
 
-### Download link
+### Download Link
 
 http://prelc.si/purus.1.0.0.zip
 
