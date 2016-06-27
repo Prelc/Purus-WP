@@ -36,6 +36,16 @@ function purus_setup() {
 	add_theme_support( 'title-tag' );
 
 	/*
+	 * Add support for Theme Logo -> https://codex.wordpress.org/Theme_Logo
+	 */
+	add_theme_support( 'custom-logo', array(
+		'height'      => 70,
+		'width'       => 172,
+		'flex-width' => true,
+	) );
+	add_theme_support( 'custom-logo' );
+
+	/*
 	 * Enable support for Post Thumbnails on posts and pages.
 	 *
 	 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
@@ -127,14 +137,14 @@ add_action( 'wp_enqueue_scripts', 'purus_scripts' );
 /**
  * Google Fonts
  */
-function google_fonts() {
+function purus_google_fonts() {
 	$query_args = array(
 		'family' => 'Open+Sans:400,700%7cLora:400,700',
 		'subset' => 'latin,latin-ext',
 	);
 	wp_enqueue_style( 'google_fonts', add_query_arg( $query_args, "//fonts.googleapis.com/css" ), array(), null );
-  }
-add_action('wp_enqueue_scripts', 'google_fonts');
+	}
+add_action('wp_enqueue_scripts', 'purus_google_fonts');
 
 
 /**
@@ -154,7 +164,7 @@ foreach ( $purus_files_to_require as $file ) {
 /**
  * Added container around videos
  */
-function custom_oembed_filter( $html ) {
+function purus_custom_oembed_filter( $html ) {
 	if (
 		false !== strstr( $html, 'youtube.com' ) ||
 		false !== strstr( $html, 'wordpress.tv' ) ||
@@ -167,13 +177,13 @@ function custom_oembed_filter( $html ) {
 	}
 	return $out;
 }
-add_filter( 'embed_oembed_html', 'custom_oembed_filter', 10, 4 ) ;
+add_filter( 'embed_oembed_html', 'purus_custom_oembed_filter', 10, 4 ) ;
 
 
 /**
  * Added container around SoundCloud
  */
-function custom_oembed_filter_soundcloud( $html_soundcloud ) {
+function purus_custom_oembed_filter_soundcloud( $html_soundcloud ) {
 	if (
 		false !== strstr( $html_soundcloud, 'soundcloud.com' )
 	) {
@@ -183,14 +193,14 @@ function custom_oembed_filter_soundcloud( $html_soundcloud ) {
 	}
 	return $out;
 }
-add_filter( 'embed_oembed_html', 'custom_oembed_filter_soundcloud', 10, 4 ) ;
+add_filter( 'embed_oembed_html', 'purus_custom_oembed_filter_soundcloud', 10, 4 ) ;
 
 
 /**
  * Replaces the excerpt "more" text
  */
-function new_excerpt_more($more) {
-       global $post;
+function purus_new_excerpt_more($more) {
+			 global $post;
 	return ' ...';
 }
-add_filter('excerpt_more', 'new_excerpt_more');
+add_filter('excerpt_more', 'purus_new_excerpt_more');

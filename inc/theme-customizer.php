@@ -15,23 +15,13 @@ function purus_customizer( $wp_customize ) {
 		'panel_theme-options',
 		array(
 			'priority' => 10,
-		  'title' => __( 'Theme Options', 'purus' ),
+			'title' => __( 'Theme Options', 'purus' ),
 		)
 	);
 
 	/**
 	 * Sections
 	 */
-	$wp_customize->add_section(
-		'section_logo',
-		array(
-			'title' => __( 'Logo', 'purus' ),
-			'description' => __( 'Add logo on your site.', 'purus' ),
-			'priority' => 10,
-			'panel'  => 'panel_theme-options',
-		)
-	);
-
 	$wp_customize->add_section(
 		'section_theme-colors',
 		array(
@@ -72,60 +62,38 @@ function purus_customizer( $wp_customize ) {
 		)
 	);
 
-  $wp_customize->add_section(
-    'section_footer',
-    array(
-      'title' => __( 'Footer', 'purus' ),
-      'description' => __( 'Settings for the footer.', 'purus' ),
-      'priority' => 60,
+	$wp_customize->add_section(
+		'section_footer',
+		array(
+			'title' => __( 'Footer', 'purus' ),
+			'description' => __( 'Settings for the footer.', 'purus' ),
+			'priority' => 60,
 			'panel'  => 'panel_theme-options',
-    )
-  );
+		)
+	);
 
 	$wp_customize->add_section(
-    'section_custom_code',
-    array(
-      'title' => __( 'Custom Code', 'purus' ),
-      'description' => __( 'Add custom code. This code will not be affected by updates.', 'purus' ),
-      'priority' => 70,
+		'section_custom_code',
+		array(
+			'title' => __( 'Custom Code', 'purus' ),
+			'description' => __( 'Add custom code. This code will not be affected by updates.', 'purus' ),
+			'priority' => 70,
 			'panel'  => 'panel_theme-options',
-    )
-  );
+		)
+	);
 
 	/**
 	 * Settings
 	 */
 
-	//  Logo Settings
-	$wp_customize->add_setting(
-		'logo',
-		array(
-			'sanitize_callback' == 'esc_url_raw',
-		)
-  );
-	$wp_customize->add_setting(
-		'logo2x',
-		array(
-			'sanitize_callback' == 'esc_url_raw',
-		)
-	);
-	$wp_customize->add_setting(
-    'logo_color',
-    array(
-			'type' => 'option',
-      'default' => '#222222',
-      'sanitize_callback' => 'sanitize_hex_color',
-    )
-	);
-
 	// Theme Colors Settings
 	$wp_customize->add_setting(
-    'primary_color',
-    array(
+		'primary_color',
+		array(
 			'type' => 'option',
-      'default' => '#1bbebc',
-      'sanitize_callback' => 'sanitize_hex_color',
-    )
+			'default' => '#1bbebc',
+			'sanitize_callback' => 'sanitize_hex_color',
+		)
 	);
 	$wp_customize->add_setting(
 		'headings_color',
@@ -148,6 +116,14 @@ function purus_customizer( $wp_customize ) {
 		array(
 			'type' => 'option',
 			'default' => '#e44244',
+			'sanitize_callback' => 'sanitize_hex_color',
+		)
+	);
+	$wp_customize->add_setting(
+		'logo_color',
+		array(
+			'type' => 'option',
+			'default' => '#222222',
 			'sanitize_callback' => 'sanitize_hex_color',
 		)
 	);
@@ -244,55 +220,55 @@ function purus_customizer( $wp_customize ) {
 		)
 	);
 	$wp_customize->add_setting(
-    'meta_author',
-    array(
-      'default' => 'show',
+		'meta_author',
+		array(
+			'default' => 'show',
 			'sanitize_callback' => 'sanitize_text_field',
-    )
+		)
 	);
 	$wp_customize->add_setting(
-    'meta_date',
-    array(
-      'default' => 'show',
+		'meta_date',
+		array(
+			'default' => 'show',
 			'sanitize_callback' => 'sanitize_text_field',
-    )
+		)
 	);
 	$wp_customize->add_setting(
-    'meta_comment_number',
-    array(
-      'default' => 'show',
+		'meta_comment_number',
+		array(
+			'default' => 'show',
 			'sanitize_callback' => 'sanitize_text_field',
-    )
+		)
 	);
 	$wp_customize->add_setting(
-    'meta_categories',
-    array(
-      'default' => 'show',
+		'meta_categories',
+		array(
+			'default' => 'show',
 			'sanitize_callback' => 'sanitize_text_field',
-    )
+		)
 	);
 	$wp_customize->add_setting(
-    'meta_tags',
-    array(
-      'default' => 'show',
+		'meta_tags',
+		array(
+			'default' => 'show',
 			'sanitize_callback' => 'sanitize_text_field',
-    )
+		)
 	);
 	$wp_customize->add_setting(
-    'meta_author_description',
-    array(
-      'default' => 'show',
+		'meta_author_description',
+		array(
+			'default' => 'show',
 			'sanitize_callback' => 'sanitize_text_field',
-    )
+		)
 	);
 
 	// Footer Settings
 	$wp_customize->add_setting(
-    'footer_left',
-    array(
-      'default' => 'Purus - WordPress theme made by <a href="https://twitter.com/prelc">Prelc</a>.',
+		'footer_left',
+		array(
+			'default' => 'Purus - WordPress theme made by <a href="https://twitter.com/prelc">Prelc</a>.',
 			'sanitize_callback' => 'wp_kses',
-    )
+		)
 	);
 	$wp_customize->add_setting(
 		'footer_right',
@@ -333,71 +309,22 @@ function purus_customizer( $wp_customize ) {
 			'sanitize_callback' => 'wp_kses',
 		)
 	);
-	$wp_customize->add_setting(
-		'custom_js_head',
-		array(
-			'sanitize_callback' => 'wp_kses',
-		)
-	);
-	$wp_customize->add_setting(
-		'custom_js_footer',
-		array(
-			'sanitize_callback' => 'wp_kses',
-		)
-	);
 
 	/**
 	 * Controls
 	 */
 
-	//  Logo Controls
-	$wp_customize->add_control(
-    new WP_Customize_Image_Control(
-      $wp_customize,
-      'logo',
-      array(
-        'label' => __( 'Logo Image', 'purus' ),
-				'description' => __( 'Recomended and maximum height for logo is 70px.', 'purus' ),
-      	'settings' => 'logo',
-				'section' => 'section_logo',
-      )
-    )
-	);
-	$wp_customize->add_control(
-    new WP_Customize_Image_Control(
-      $wp_customize,
-      'logo2x',
-      array(
-        'label' => __( 'Retina Logo Image', 'purus' ),
-      	'settings' => 'logo2x',
-				'section' => 'section_logo',
-      )
-    )
-	);
-	$wp_customize->add_control(
-    new WP_Customize_Color_Control(
-      $wp_customize,
-      'logo_color',
-      array(
-        'label' => __( 'Logo Color', 'purus' ),
-				'description' => __( 'Works only if there is no Logo Image.', 'purus' ),
-        'settings' => 'logo_color',
-				'section' => 'section_logo',
-      )
-    )
-	);
-
 	// Theme Colors Controls
 	$wp_customize->add_control(
-    new WP_Customize_Color_Control(
-      $wp_customize,
-      'primary_color',
-      array(
-        'label' => __( 'Primary Color', 'purus' ),
-        'settings' => 'primary_color',
+		new WP_Customize_Color_Control(
+			$wp_customize,
+			'primary_color',
+			array(
+				'label' => __( 'Primary Color', 'purus' ),
+				'settings' => 'primary_color',
 				'section' => 'section_theme-colors',
-      )
-    )
+			)
+		)
 	);
 	$wp_customize->add_control(
 		new WP_Customize_Color_Control(
@@ -428,6 +355,18 @@ function purus_customizer( $wp_customize ) {
 			array(
 				'label' => __( 'Link Color', 'purus' ),
 				'settings' => 'link_color',
+				'section' => 'section_theme-colors',
+			)
+		)
+	);
+	$wp_customize->add_control(
+		new WP_Customize_Color_Control(
+			$wp_customize,
+			'logo_color',
+			array(
+				'label' => __( 'Logo Color', 'purus' ),
+				'description' => __( 'Works only if there is no Logo Image.', 'purus' ),
+				'settings' => 'logo_color',
 				'section' => 'section_theme-colors',
 			)
 		)
@@ -562,98 +501,98 @@ function purus_customizer( $wp_customize ) {
 		)
 	);
 	$wp_customize->add_control(
-    'meta_author',
-    array(
-      'type' => 'select',
-      'label' => __( 'Meta Author', 'purus' ),
-      'section' => 'section_meta',
-      'choices' => array(
-        'show' => __( 'Show', 'purus' ),
-        'hide' => __( 'Hide', 'purus' ),
-      ),
-    )
+		'meta_author',
+		array(
+			'type' => 'select',
+			'label' => __( 'Meta Author', 'purus' ),
+			'section' => 'section_meta',
+			'choices' => array(
+				'show' => __( 'Show', 'purus' ),
+				'hide' => __( 'Hide', 'purus' ),
+			),
+		)
 	);
 	$wp_customize->add_control(
-    'meta_date',
-    array(
-      'type' => 'select',
-      'label' => __( 'Meta Date', 'purus' ),
-      'section' => 'section_meta',
-      'choices' => array(
-        'show' => __( 'Show', 'purus' ),
-        'hide' => __( 'Hide', 'purus' ),
-      ),
-    )
+		'meta_date',
+		array(
+			'type' => 'select',
+			'label' => __( 'Meta Date', 'purus' ),
+			'section' => 'section_meta',
+			'choices' => array(
+				'show' => __( 'Show', 'purus' ),
+				'hide' => __( 'Hide', 'purus' ),
+			),
+		)
 	);
 	$wp_customize->add_control(
-    'meta_comment_number',
-    array(
-      'type' => 'select',
-      'label' => __( 'Meta Comment Number', 'purus' ),
-      'section' => 'section_meta',
-      'choices' => array(
-        'show' => __( 'Show', 'purus' ),
-        'hide' => __( 'Hide', 'purus' ),
-      ),
-    )
+		'meta_comment_number',
+		array(
+			'type' => 'select',
+			'label' => __( 'Meta Comment Number', 'purus' ),
+			'section' => 'section_meta',
+			'choices' => array(
+				'show' => __( 'Show', 'purus' ),
+				'hide' => __( 'Hide', 'purus' ),
+			),
+		)
 	);
 	$wp_customize->add_control(
-    'meta_categories',
-    array(
-      'type' => 'select',
-      'label' => __( 'Meta Categories', 'purus' ),
-      'section' => 'section_meta',
-      'choices' => array(
-        'show' => __( 'Show', 'purus' ),
-        'hide' => __( 'Hide', 'purus' ),
-      ),
-    )
+		'meta_categories',
+		array(
+			'type' => 'select',
+			'label' => __( 'Meta Categories', 'purus' ),
+			'section' => 'section_meta',
+			'choices' => array(
+				'show' => __( 'Show', 'purus' ),
+				'hide' => __( 'Hide', 'purus' ),
+			),
+		)
 	);
 	$wp_customize->add_control(
-    'meta_tags',
-    array(
-      'type' => 'select',
-      'label' => __( 'Meta Tags', 'purus' ),
+		'meta_tags',
+		array(
+			'type' => 'select',
+			'label' => __( 'Meta Tags', 'purus' ),
 			'description' => __( 'Tags are at the bottom of the single page.', 'purus' ),
-      'section' => 'section_meta',
-      'choices' => array(
-        'show' => __( 'Show', 'purus' ),
-        'hide' => __( 'Hide', 'purus' ),
-      ),
-    )
+			'section' => 'section_meta',
+			'choices' => array(
+				'show' => __( 'Show', 'purus' ),
+				'hide' => __( 'Hide', 'purus' ),
+			),
+		)
 	);
 	$wp_customize->add_control(
-    'meta_author_description',
-    array(
-      'type' => 'select',
-      'label' => __( 'Meta Author Description', 'purus' ),
+		'meta_author_description',
+		array(
+			'type' => 'select',
+			'label' => __( 'Meta Author Description', 'purus' ),
 			'description' => __( 'Description is at the bottom of the single page.', 'purus' ),
-      'section' => 'section_meta',
-      'choices' => array(
-        'show' => __( 'Show', 'purus' ),
-        'hide' => __( 'Hide', 'purus' ),
-      ),
-    )
+			'section' => 'section_meta',
+			'choices' => array(
+				'show' => __( 'Show', 'purus' ),
+				'hide' => __( 'Hide', 'purus' ),
+			),
+		)
 	);
 
 	// Footer Controls
 	$wp_customize->add_control(
-    'footer_left',
-    array(
+		'footer_left',
+		array(
 			'type' => 'text',
-      'label' => __( 'Footer text on the left', 'purus' ),
+			'label' => __( 'Footer text on the left', 'purus' ),
 			'priority'    => 10,
 			'section' => 'section_footer',
-    )
+		)
 	);
 	$wp_customize->add_control(
-    'footer_right',
-    array(
+		'footer_right',
+		array(
 			'type' => 'text',
-      'label' => __( 'Footer text on the right', 'purus' ),
+			'label' => __( 'Footer text on the right', 'purus' ),
 			'priority'    => 20,
 			'section' => 'section_footer',
-    )
+		)
 	);
 	$wp_customize->add_control(
 		new WP_Customize_Color_Control(
@@ -698,16 +637,6 @@ function purus_customizer( $wp_customize ) {
 		'label'       => __( 'Custom CSS', 'purus' ),
 		'section'     => 'section_custom_code',
 	) );
-	$wp_customize->add_control( 'custom_js_head', array(
-		'type'        => 'textarea',
-		'label'       => __( 'Custom JS in Head', 'purus' ),
-		'section'     => 'section_custom_code',
-	) );
-	$wp_customize->add_control( 'custom_js_footer', array(
-		'type'        => 'textarea',
-		'label'       => __( 'Custom JS in Footer', 'purus' ),
-		'section'     => 'section_custom_code',
-	) );
 
 }
 add_action( 'customize_register', 'purus_customizer' );
@@ -723,10 +652,10 @@ function customizer_colors() {
 	$logo_color = get_option( 'logo_color', '#222222' );
 
 	// Theme Colors
-  $primary_color = get_option( 'primary_color', '#1bbebc' );
-  $headings_color = get_option( 'headings_color', '#222222' );
-  $text_color = get_option( 'text_color', '#555555' );
-  $link_color = get_option( 'link_color', '#e44244' );
+	$primary_color = get_option( 'primary_color', '#1bbebc' );
+	$headings_color = get_option( 'headings_color', '#222222' );
+	$text_color = get_option( 'text_color', '#555555' );
+	$link_color = get_option( 'link_color', '#e44244' );
 
 	// Header Colors
 	$header_background_color = get_option( 'header_background_color', '#ffffff' );
@@ -756,15 +685,15 @@ function customizer_colors() {
 	<style>
 		/* Logo Color */
 		<?php if ( $logo_color ) : ?>
-			.header__logo--heading,
-			.header__logo--heading h1 {
+			.header__heading,
+			.header__heading h1 {
 				color: <?php echo esc_attr( $logo_color ); ?>;
 			}
 
-			.header__logo--heading:focus,
-			.header__logo--heading:hover,
-			.header__logo--heading:focus h1,
-			.header__logo--heading:hover h1 {
+			.header__heading:focus,
+			.header__heading:hover,
+			.header__heading:focus h1,
+			.header__heading:hover h1 {
 				color: <?php echo esc_attr( '#' . $base_logo_color->darken(5) ); ?>;
 			}
 		<?php endif; ?>
@@ -968,23 +897,3 @@ function customizer_colors() {
 	<?php
 } // End customizer_colors()
 add_action( 'wp_head', 'customizer_colors' );
-
-function customizer_js_head() { ?>
-	<script>
-		<?php
-		echo get_theme_mod( 'custom_js_head' );
-		?>
-	</script>
-	<?php
-}
-add_action( 'wp_head', 'customizer_js_head' );
-
-function customizer_js_footer() { ?>
-	<script>
-		<?php
-		echo get_theme_mod( 'custom_js_footer' );
-		?>
-	</script>
-	<?php
-}
-add_action( 'wp_footer', 'customizer_js_footer' );

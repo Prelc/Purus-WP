@@ -26,31 +26,22 @@
 		<div class="container">
 			<header class="header">
 				<?php
-					$purus_logo   = get_theme_mod( 'logo', false );
-					$purus_logo2x = get_theme_mod( 'logo2x', false );
+					// Display the Custom Logo
+					the_custom_logo();
 
-					if ( ! empty( $purus_logo ) ) :
-				?>
-					<!-- Logo -->
-					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="header__logo">
-						<img src="<?php echo esc_url( $purus_logo ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" srcset="<?php echo esc_attr( $purus_logo ); ?><?php echo empty ( $purus_logo2x ) ? '' : ', ' . esc_url( $purus_logo2x ) . ' 2x'; ?>">
-					</a>
-				<?php
-				else :
-				?>
-					<!-- Site Title if there is no logo -->
-					<?php
-						if ( is_front_page() && is_home() ) : ?>
-							<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="header__logo--heading">
-								<h1><?php bloginfo( 'name' ); ?></h1>
-							</a>
-						<?php else : ?>
-							<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="header__logo--heading">
-								<p><?php bloginfo( 'name' ); ?></p>
-							</a>
-						<?php endif; ?>
-				<?php
-				endif;
+					if ( ! has_custom_logo()) { ?>
+						<?php
+							if ( is_front_page() && is_home() ) : ?>
+								<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="header__heading">
+									<h1><?php bloginfo( 'name' ); ?></h1>
+								</a>
+							<?php else : ?>
+								<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="header__heading">
+									<p><?php bloginfo( 'name' ); ?></p>
+								</a>
+							<?php endif; ?>
+						<?php
+					}
 				?>
 
 				<!-- Toggle button for Main Navigation on mobile -->

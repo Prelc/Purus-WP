@@ -22,7 +22,7 @@
 		}
 	}
 
-	&__logo {
+	.custom-logo-link {
 		display: inline-block;
 		margin-top: ptr(10);
 		margin-bottom: ptr(10);
@@ -30,26 +30,26 @@
 		@include media-breakpoint-up(sm) {
 			text-align: left;
 		}
+	}
 
-		&--heading {
-			color: $gray-dark;
+	&__heading {
+		color: $gray-dark;
 
-			p,
-			h1 {
-				font-family: $secondary-font;
-				font-weight: bold;
-				font-size: ptr(28);
-				line-height: 1.2;
-				letter-spacing: -0.5px;
-				display: inline-block;
-				margin-top: ptr(29);
-				margin-bottom: ptr(28);
-			}
+		p,
+		h1 {
+			font-family: $secondary-font;
+			font-weight: bold;
+			font-size: ptr(28);
+			line-height: 1.2;
+			letter-spacing: -0.5px;
+			display: inline-block;
+			margin-top: ptr(29);
+			margin-bottom: ptr(28);
+		}
 
-			&:focus,
-			&:hover {
-				color: #000000;
-			}
+		&:focus,
+		&:hover {
+			color: #000000;
 		}
 	}
 
