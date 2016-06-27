@@ -676,10 +676,10 @@ function customizer_colors() {
 	$footer_background_color = get_option( 'footer_background_color', '#ffffff' );
 
 	// Colors
-	$base_primary_color = new Color( $primary_color );
-	$base_logo_color = new Color( $logo_color );
-	$base_navigation_submenu_background_color = new Color( $navigation_submenu_background_color );
-	$base_navigation_mobile_background_color = new Color( $navigation_mobile_background_color );
+	$base_primary_color = new purus_Color( $primary_color );
+	$base_logo_color = new purus_Color( $logo_color );
+	$base_navigation_submenu_background_color = new purus_Color( $navigation_submenu_background_color );
+	$base_navigation_mobile_background_color = new purus_Color( $navigation_mobile_background_color );
 	?>
 
 	<style>

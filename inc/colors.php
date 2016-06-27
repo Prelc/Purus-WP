@@ -9,7 +9,7 @@
 /**
  * A color utility that helps manipulate HEX colors
  */
-class Color {
+class purus_Color {
 
     private $_hex;
     private $_hsl;
