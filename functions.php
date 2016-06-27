@@ -113,9 +113,6 @@ function purus_scripts() {
 
 	wp_enqueue_style( 'purus-style', get_stylesheet_uri() );
 
-	// requirejs
-	wp_register_script( 'purus-requirejs', get_template_directory_uri() . '/bower_components/requirejs/require.js', array(), null, true );
-
 	// array for main.js dependencies
 	$main_deps = array( 'jquery' );
 
