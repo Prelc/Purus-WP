@@ -143,7 +143,7 @@ function purus_customizer( $wp_customize ) {
 		'navigation_search',
 		array(
 			'default' => 'show',
-			'sanitize_callback' => 'sanitize_text_field',
+			'sanitize_callback' => 'purus_sanitize_select',
 		)
 	);
 	$wp_customize->add_setting(
@@ -216,49 +216,49 @@ function purus_customizer( $wp_customize ) {
 		'meta_author_avatar',
 		array(
 			'default' => 'show',
-			'sanitize_callback' => 'sanitize_text_field',
+			'sanitize_callback' => 'purus_sanitize_select',
 		)
 	);
 	$wp_customize->add_setting(
 		'meta_author',
 		array(
 			'default' => 'show',
-			'sanitize_callback' => 'sanitize_text_field',
+			'sanitize_callback' => 'purus_sanitize_select',
 		)
 	);
 	$wp_customize->add_setting(
 		'meta_date',
 		array(
 			'default' => 'show',
-			'sanitize_callback' => 'sanitize_text_field',
+			'sanitize_callback' => 'purus_sanitize_select',
 		)
 	);
 	$wp_customize->add_setting(
 		'meta_comment_number',
 		array(
 			'default' => 'show',
-			'sanitize_callback' => 'sanitize_text_field',
+			'sanitize_callback' => 'purus_sanitize_select',
 		)
 	);
 	$wp_customize->add_setting(
 		'meta_categories',
 		array(
 			'default' => 'show',
-			'sanitize_callback' => 'sanitize_text_field',
+			'sanitize_callback' => 'purus_sanitize_select',
 		)
 	);
 	$wp_customize->add_setting(
 		'meta_tags',
 		array(
 			'default' => 'show',
-			'sanitize_callback' => 'sanitize_text_field',
+			'sanitize_callback' => 'purus_sanitize_select',
 		)
 	);
 	$wp_customize->add_setting(
 		'meta_author_description',
 		array(
 			'default' => 'show',
-			'sanitize_callback' => 'sanitize_text_field',
+			'sanitize_callback' => 'purus_sanitize_select',
 		)
 	);
 
@@ -306,7 +306,8 @@ function purus_customizer( $wp_customize ) {
 	$wp_customize->add_setting(
 		'custom_css',
 		array(
-			'sanitize_callback' => 'wp_kses',
+			'sanitize_callback'    => 'wp_filter_nohtml_kses',
+			'sanitize_js_callback' => 'wp_filter_nohtml_kses'
 		)
 	);
 
@@ -897,3 +898,27 @@ function customizer_colors() {
 	<?php
 } // End customizer_colors()
 add_action( 'wp_head', 'customizer_colors' );
+
+
+/**
+ * Sanitization functions
+**/
+
+/**
+ * Select and radio sanitization callback.
+ *
+ * @source https://github.com/WPTRT/code-examples/blob/master/customizer/sanitization-callbacks.php#L262-L288
+ */
+if ( ! function_exists( 'purus_sanitize_select' ) ) {
+	function purus_sanitize_select( $input, $setting ) {
+
+		// Ensure input is a slug.
+		$input = sanitize_key( $input );
+
+		// Get list of choices from the control associated with the setting.
+		$choices = $setting->manager->get_control( $setting->id )->choices;
+
+		// If the input is a valid key, return it; otherwise, return the default.
+		return ( array_key_exists( $input, $choices ) ? $input : $setting->default );
+	}
+}
