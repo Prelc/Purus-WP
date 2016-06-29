@@ -20,8 +20,6 @@ gulp.task('css', function () {
 });
 
 // Turn .scss files into .css.
-'use strict';
-
 gulp.task('sass', function () {
   gulp.src('./assets/sass/*.scss')
     .pipe(sass().on('error', sass.logError))
@@ -39,7 +37,7 @@ gulp.task("cssnext", function() {
     .pipe(cssnext({
         compress: true
     }))
-    .pipe(gulp.dest("./"))
+    .pipe(gulp.dest("./"));
 });
 
 // JS stuff
