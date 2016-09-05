@@ -90,7 +90,6 @@ function purus_customizer( $wp_customize ) {
 	$wp_customize->add_setting(
 		'primary_color',
 		array(
-			'type' => 'option',
 			'default' => '#1bbebc',
 			'sanitize_callback' => 'sanitize_hex_color',
 		)
@@ -98,7 +97,6 @@ function purus_customizer( $wp_customize ) {
 	$wp_customize->add_setting(
 		'headings_color',
 		array(
-			'type' => 'option',
 			'default' => '#222222',
 			'sanitize_callback' => 'sanitize_hex_color',
 		)
@@ -106,7 +104,6 @@ function purus_customizer( $wp_customize ) {
 	$wp_customize->add_setting(
 		'text_color',
 		array(
-			'type' => 'option',
 			'default' => '#555555',
 			'sanitize_callback' => 'sanitize_hex_color',
 		)
@@ -114,7 +111,6 @@ function purus_customizer( $wp_customize ) {
 	$wp_customize->add_setting(
 		'link_color',
 		array(
-			'type' => 'option',
 			'default' => '#e44244',
 			'sanitize_callback' => 'sanitize_hex_color',
 		)
@@ -122,7 +118,6 @@ function purus_customizer( $wp_customize ) {
 	$wp_customize->add_setting(
 		'logo_color',
 		array(
-			'type' => 'option',
 			'default' => '#222222',
 			'sanitize_callback' => 'sanitize_hex_color',
 		)
@@ -132,7 +127,6 @@ function purus_customizer( $wp_customize ) {
 	$wp_customize->add_setting(
 		'header_background_color',
 		array(
-			'type' => 'option',
 			'default' => '#ffffff',
 			'sanitize_callback' => 'sanitize_hex_color',
 		)
@@ -149,7 +143,6 @@ function purus_customizer( $wp_customize ) {
 	$wp_customize->add_setting(
 		'navigation_link_color',
 		array(
-			'type' => 'option',
 			'default' => '#555555',
 			'sanitize_callback' => 'sanitize_hex_color',
 		)
@@ -157,7 +150,6 @@ function purus_customizer( $wp_customize ) {
 	$wp_customize->add_setting(
 		'navigation_link_hover_color',
 		array(
-			'type' => 'option',
 			'default' => '#1bbebc',
 			'sanitize_callback' => 'sanitize_hex_color',
 		)
@@ -165,7 +157,6 @@ function purus_customizer( $wp_customize ) {
 	$wp_customize->add_setting(
 		'navigation_submenu_link_color',
 		array(
-			'type' => 'option',
 			'default' => '#555555',
 			'sanitize_callback' => 'sanitize_hex_color',
 		)
@@ -173,7 +164,6 @@ function purus_customizer( $wp_customize ) {
 	$wp_customize->add_setting(
 		'navigation_submenu_link_hover_color',
 		array(
-			'type' => 'option',
 			'default' => '#1bbebc',
 			'sanitize_callback' => 'sanitize_hex_color',
 		)
@@ -181,7 +171,6 @@ function purus_customizer( $wp_customize ) {
 	$wp_customize->add_setting(
 		'navigation_submenu_background_color',
 		array(
-			'type' => 'option',
 			'default' => '#f2f2f2',
 			'sanitize_callback' => 'sanitize_hex_color',
 		)
@@ -189,7 +178,6 @@ function purus_customizer( $wp_customize ) {
 	$wp_customize->add_setting(
 		'navigation_mobile_link_color',
 		array(
-			'type' => 'option',
 			'default' => '#555555',
 			'sanitize_callback' => 'sanitize_hex_color',
 		)
@@ -197,7 +185,6 @@ function purus_customizer( $wp_customize ) {
 	$wp_customize->add_setting(
 		'navigation_mobile_link_hover_color',
 		array(
-			'type' => 'option',
 			'default' => '#1bbebc',
 			'sanitize_callback' => 'sanitize_hex_color',
 		)
@@ -205,7 +192,6 @@ function purus_customizer( $wp_customize ) {
 	$wp_customize->add_setting(
 		'navigation_mobile_background_color',
 		array(
-			'type' => 'option',
 			'default' => '#f2f2f2',
 			'sanitize_callback' => 'sanitize_hex_color',
 		)
@@ -281,7 +267,6 @@ function purus_customizer( $wp_customize ) {
 	$wp_customize->add_setting(
 		'footer_text_color',
 		array(
-			'type' => 'option',
 			'default' => '#555555',
 			'sanitize_callback' => 'sanitize_hex_color',
 		)
@@ -289,7 +274,6 @@ function purus_customizer( $wp_customize ) {
 	$wp_customize->add_setting(
 		'footer_link_color',
 		array(
-			'type' => 'option',
 			'default' => '#e44244',
 			'sanitize_callback' => 'sanitize_hex_color',
 		)
@@ -297,7 +281,6 @@ function purus_customizer( $wp_customize ) {
 	$wp_customize->add_setting(
 		'footer_background_color',
 		array(
-			'type' => 'option',
 			'default' => '#ffffff',
 			'sanitize_callback' => 'sanitize_hex_color',
 		)
@@ -651,31 +634,31 @@ add_action( 'customize_register', 'purus_customizer' );
 function customizer_colors() {
 
 	// Logo Color
-	$logo_color = get_option( 'logo_color', '#222222' );
+	$logo_color = get_theme_mod( 'logo_color', '#222222' );
 
 	// Theme Colors
-	$primary_color = get_option( 'primary_color', '#1bbebc' );
-	$headings_color = get_option( 'headings_color', '#222222' );
-	$text_color = get_option( 'text_color', '#555555' );
-	$link_color = get_option( 'link_color', '#e44244' );
+	$primary_color = get_theme_mod( 'primary_color', '#1bbebc' );
+	$headings_color = get_theme_mod( 'headings_color', '#222222' );
+	$text_color = get_theme_mod( 'text_color', '#555555' );
+	$link_color = get_theme_mod( 'link_color', '#e44244' );
 
 	// Header Colors
-	$header_background_color = get_option( 'header_background_color', '#ffffff' );
+	$header_background_color = get_theme_mod( 'header_background_color', '#ffffff' );
 
 	// Navigation Colors
-	$navigation_link_color = get_option( 'navigation_link_color', '#555555' );
-	$navigation_link_hover_color = get_option( 'navigation_link_hover_color', '#1bbebc' );
-	$navigation_submenu_link_color = get_option( 'navigation_submenu_link_color', '#555555' );
-	$navigation_submenu_link_hover_color = get_option( 'navigation_submenu_link_hover_color', '#1bbebc' );
-	$navigation_submenu_background_color = get_option( 'navigation_submenu_background_color', '#f2f2f2' );
-	$navigation_mobile_link_color = get_option( 'navigation_mobile_link_color', '#555555' );
-	$navigation_mobile_link_hover_color = get_option( 'navigation_mobile_link_hover_color', '#1bbebc' );
-	$navigation_mobile_background_color = get_option( 'navigation_mobile_background_color', '#f2f2f2' );
+	$navigation_link_color = get_theme_mod( 'navigation_link_color', '#555555' );
+	$navigation_link_hover_color = get_theme_mod( 'navigation_link_hover_color', '#1bbebc' );
+	$navigation_submenu_link_color = get_theme_mod( 'navigation_submenu_link_color', '#555555' );
+	$navigation_submenu_link_hover_color = get_theme_mod( 'navigation_submenu_link_hover_color', '#1bbebc' );
+	$navigation_submenu_background_color = get_theme_mod( 'navigation_submenu_background_color', '#f2f2f2' );
+	$navigation_mobile_link_color = get_theme_mod( 'navigation_mobile_link_color', '#555555' );
+	$navigation_mobile_link_hover_color = get_theme_mod( 'navigation_mobile_link_hover_color', '#1bbebc' );
+	$navigation_mobile_background_color = get_theme_mod( 'navigation_mobile_background_color', '#f2f2f2' );
 
 	// Footer Colors
-	$footer_text_color = get_option( 'footer_text_color', '#555555' );
-	$footer_link_color = get_option( 'footer_link_color', '#e44244' );
-	$footer_background_color = get_option( 'footer_background_color', '#ffffff' );
+	$footer_text_color = get_theme_mod( 'footer_text_color', '#555555' );
+	$footer_link_color = get_theme_mod( 'footer_link_color', '#e44244' );
+	$footer_background_color = get_theme_mod( 'footer_background_color', '#ffffff' );
 
 	// Colors
 	$base_primary_color = new purus_Color( $primary_color );
