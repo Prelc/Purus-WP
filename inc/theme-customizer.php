@@ -252,14 +252,14 @@ function purus_customizer( $wp_customize ) {
 	$wp_customize->add_setting(
 		'footer_left',
 		array(
-			'default' => esc_html_e( 'Purus - WordPress theme made by <a href="https://twitter.com/prelc">Prelc</a>.', 'purus' ),
+			'default' => esc_html__( 'Purus - WordPress theme made by <a href="https://twitter.com/prelc">Prelc</a>.', 'purus' ),
 			'sanitize_callback' => 'wp_kses_post',
 		)
 	);
 	$wp_customize->add_setting(
 		'footer_right',
 		array(
-			'default' => esc_html_e( '&copy; 2016. All rights reserved.', 'purus' ),
+			'default' => esc_html__( '&copy; 2016. All rights reserved.', 'purus' ),
 			'sanitize_callback' => 'wp_kses_post',
 		)
 	);
