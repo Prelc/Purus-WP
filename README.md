@@ -7,7 +7,15 @@ http://prelc.si/purus/
 
 ### Download Link
 
-http://prelc.si/purus.1.0.0.zip
+http://prelc.si/purus/purus.1.1.4.zip
+
+### Demo Content
+
+http://prelc.si/purus/purus-demo-content.xml
+
+### Child Theme
+
+http://prelc.si/purus/purus-child.zip
 
 ### Theme Screenshot
 
