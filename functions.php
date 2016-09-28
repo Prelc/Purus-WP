@@ -139,7 +139,7 @@ function purus_google_fonts() {
 		'family' => 'Open+Sans:400,700%7cLora:400,700',
 		'subset' => 'latin,latin-ext',
 	);
-	wp_enqueue_style( 'google_fonts', add_query_arg( $query_args, "//fonts.googleapis.com/css" ), array(), null );
+	wp_enqueue_style( 'purus_google_fonts', add_query_arg( $query_args, "//fonts.googleapis.com/css" ), array(), null );
 	}
 add_action('wp_enqueue_scripts', 'purus_google_fonts');
 
