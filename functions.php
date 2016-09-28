@@ -197,7 +197,6 @@ add_filter( 'embed_oembed_html', 'purus_custom_oembed_filter_soundcloud', 10, 4 
  * Replaces the excerpt "more" text
  */
 function purus_new_excerpt_more($more) {
-			 global $post;
 	return ' &hellip;';
 }
 add_filter('excerpt_more', 'purus_new_excerpt_more');
