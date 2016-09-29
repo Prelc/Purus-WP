@@ -1,7 +1,6 @@
 // config
 require.config( {
 	paths: {
-		jquery:     'assets/js/fix.jquery',
 		util:       'bower_components/bootstrap/dist/js/umd/util',
 		alert:      'bower_components/bootstrap/dist/js/umd/alert',
 		button:     'bower_components/bootstrap/dist/js/umd/button',
@@ -20,11 +19,6 @@ require.config( {
 	baseUrl: PurusVars.pathToTheme
 } );
 
-require( [
-	'jquery',
-	'collapse',
-	'dropdown',
-], function ( $, _ ) {
+require( [ 'collapse', 'dropdown' ], function () {
 	'use strict';
-
 } );
