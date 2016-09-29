@@ -252,7 +252,7 @@ function purus_customizer( $wp_customize ) {
 	$wp_customize->add_setting(
 		'footer_left',
 		array(
-			'default' => esc_html__( 'Purus - WordPress theme made by <a href="https://twitter.com/prelc">Prelc</a>.', 'purus' ),
+			'default' => sprintf( esc_html__( 'Purus - WordPress theme made by %sPrelc%s.', 'purus' ), '<a href="https://twitter.com/prelc">', '</a>' ),
 			'sanitize_callback' => 'wp_kses_post',
 		)
 	);
