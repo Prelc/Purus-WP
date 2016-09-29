@@ -15,10 +15,10 @@
 		<div class="container">
 			<div class="footer">
 				<div class="footer__left">
-					<?php echo wp_kses_post( get_theme_mod( 'footer_left', 'Purus - WordPress theme made by <a href="https://twitter.com/prelc">Prelc</a>.' ) ); ?>
+					<?php echo wp_kses_post( get_theme_mod( 'footer_left', sprintf( esc_html__( 'Purus - WordPress theme made by %sPrelc%s.', 'purus' ), '<a href="https://twitter.com/prelc">', '</a>' ) ) ); ?>
 				</div>
 				<div class="footer__right">
-					<?php echo wp_kses_post( get_theme_mod( 'footer_right', '© 2016. All rights reserved.' ) ); ?>
+					<?php echo wp_kses_post( get_theme_mod( 'footer_right', '&copy; 2016. All rights reserved.' ) ); ?>
 				</div>
 			</div>
 		</div>
