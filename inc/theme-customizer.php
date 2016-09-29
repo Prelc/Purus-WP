@@ -259,7 +259,7 @@ function purus_customizer( $wp_customize ) {
 	$wp_customize->add_setting(
 		'footer_right',
 		array(
-			'default' => esc_html__( 'Copyright 2016. All rights reserved.', 'purus' ),
+			'default' => esc_html__( '&copy; 2016. All rights reserved.', 'purus' ),
 			'sanitize_callback' => 'wp_kses_post',
 		)
 	);
