@@ -874,7 +874,7 @@ function customizer_colors() {
 		<?php endif; ?>
 
 		<?php if( get_theme_mod( 'custom_css' ) != '' ) {
-			echo get_theme_mod( 'custom_css' );
+			echo wp_filter_nohtml_kses( get_theme_mod( 'custom_css' ) );
 		} ?>
 	</style>
 
