@@ -7,7 +7,7 @@ http://prelc.si/purus/
 
 ### Download Link
 
-http://prelc.si/purus/purus.1.1.4.zip
+http://prelc.si/purus/purus-v1.1.5.zip
 
 ### Demo Content
 
