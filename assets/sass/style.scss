@@ -107,6 +107,13 @@ figure {
 	height: auto;
 }
 
+input {
+	.radio,
+	.checkbox {
+		display: inline-block;
+	}
+}
+
 blockquote {
 	border-left: ptr(3) solid $brand-primary;
 	padding-left: ptr(20);

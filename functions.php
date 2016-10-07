@@ -7,6 +7,38 @@
  * @package purus
  */
 
+// Create a helper function for easy SDK access.
+function purus_fs() {
+	global $purus_fs;
+
+	if ( ! isset( $purus_fs ) ) {
+		// Include Freemius SDK.
+		require_once dirname(__FILE__) . '/freemius/start.php';
+
+		$purus_fs = fs_dynamic_init( array(
+			'id'                => '461',
+			'slug'              => 'purus',
+			'type'              => 'theme',
+			'public_key'        => 'pk_fd500ac141f6c767b22b4eaa1e8d5',
+			'is_premium'        => false,
+			'has_addons'        => false,
+			'has_paid_plans'    => false,
+			'menu'              => array(
+				'first-path' => 'themes.php',
+				'account'    => false,
+				'contact'    => false,
+				'support'    => false,
+			),
+		) );
+	}
+
+	return $purus_fs;
+}
+
+// Init Freemius.
+purus_fs();
+
+
 if ( ! function_exists( 'purus_setup' ) ) :
 /**
  * Sets up theme defaults and registers support for various WordPress features.

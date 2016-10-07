@@ -2767,6 +2767,9 @@ img, figure {
   max-width: 100%;
   height: auto; }
 
+input .radio, input .checkbox {
+  display: inline-block; }
+
 blockquote {
   border-left: 0.16667rem solid #1bbebc;
   padding-left: 1.11111rem;
