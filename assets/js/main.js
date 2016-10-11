@@ -15,10 +15,6 @@ require.config( {
 	},
 } );
 
-require.config( {
-	baseUrl: PurusVars.pathToTheme
-} );
-
 require( [ 'collapse', 'dropdown' ], function () {
 	'use strict';
 } );
