@@ -140,10 +140,7 @@ add_action( 'after_setup_theme', 'purus_content_width', 0 );
  * Enqueue scripts and styles.
  */
 function purus_scripts() {
-	wp_enqueue_style( 'purus-style', get_stylesheet_uri(), 'dashicons' );
-	wp_enqueue_style( 'dashicons' );
-
-	wp_enqueue_style( 'purus-style', get_stylesheet_uri() );
+	wp_enqueue_style( 'purus-style', get_stylesheet_uri(), array( 'dashicons' ) );
 
 	// array for main.js dependencies
 	$main_deps = array( 'jquery' );
