@@ -142,16 +142,8 @@ add_action( 'after_setup_theme', 'purus_content_width', 0 );
 function purus_scripts() {
 	wp_enqueue_style( 'purus-style', get_stylesheet_uri(), array( 'dashicons' ) );
 
-	// array for main.js dependencies
-	$main_deps = array( 'jquery' );
-
 	// Main JS fail
-	wp_enqueue_script( 'purus-main', get_template_directory_uri() . '/assets/js/main-min.js', $main_deps );
-
-	// Pass data to the main script
-	wp_localize_script( 'purus-main', 'PurusVars', array(
-		'pathToTheme'  => get_template_directory_uri(),
-	) );
+	wp_enqueue_script( 'purus-main', get_template_directory_uri() . '/assets/js/main-min.js', array( 'jquery' ) );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
