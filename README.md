@@ -19,4 +19,4 @@ http://prelc.si/purus/purus-child.zip
 
 ### Theme Screenshot
 
-<img src="https://raw.githubusercontent.com/Prelc/Purus-WP/master/screenshot.jpg" alt="Purus WordPress Theme">
+<img src="http://i.imgur.com/wFMvCvl.jpg" alt="Purus WordPress Theme">
