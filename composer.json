@@ -1,0 +1,11 @@
+{
+    "repositories": [
+      {
+        "type": "vcs",
+        "url": "https://github.com/Freemius/wordpress-sdk.git"
+      }
+    ],
+    "require": {
+        "freemius/wordpress-sdk": "dev-feature/fs-theme-mode-v2"
+    }
+}
