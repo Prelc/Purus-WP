@@ -13,12 +13,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Freemius/wordpress-sdk.git",
-                "reference": "4a9c0681705e11b66b0ae14d4dc0a3de6fb91139"
+                "reference": "94af63582e32c499d89fe42a2920403b7c474b59"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Freemius/wordpress-sdk/zipball/4a9c0681705e11b66b0ae14d4dc0a3de6fb91139",
-                "reference": "4a9c0681705e11b66b0ae14d4dc0a3de6fb91139",
+                "url": "https://api.github.com/repos/Freemius/wordpress-sdk/zipball/94af63582e32c499d89fe42a2920403b7c474b59",
+                "reference": "94af63582e32c499d89fe42a2920403b7c474b59",
                 "shasum": ""
             },
             "require": {
@@ -40,7 +40,7 @@
                 "source": "https://github.com/Freemius/wordpress-sdk/tree/feature/fs-theme-mode-v2",
                 "issues": "https://github.com/Freemius/wordpress-sdk/issues"
             },
-            "time": "2016-10-11 11:45:38"
+            "time": "2016-11-05 23:28:39"
         }
     ],
     "packages-dev": [],
