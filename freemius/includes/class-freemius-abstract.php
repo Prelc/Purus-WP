@@ -58,7 +58,7 @@
 		 * Checks if the plugin's type is "plugin". The other type is "theme".
 		 *
 		 * @author Leo Fajardo (@leorw)
-		 * @since  1.2.0
+		 * @since  1.2.2
 		 *
 		 * @return bool
 		 */
@@ -68,7 +68,7 @@
 		 * Checks if the module type is "theme". The other type is "plugin".
 		 *
 		 * @author Leo Fajardo (@leorw)
-		 * @since  1.2.0
+		 * @since  1.2.2
 		 *
 		 * @return bool
 		 */
@@ -366,8 +366,7 @@
 		 * @return bool
 		 */
 		function is_freemium() {
-			return ! $this->is_only_premium() &&
-			       $this->has_paid_plan() &&
+			return $this->has_paid_plan() &&
 			       $this->has_free_plan();
 		}
 

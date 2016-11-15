@@ -62,7 +62,7 @@
 				'pre_set_site_transient_update_plugins_filter'
 			) );
 
-			if ( ! $this->_fs->has_active_license() ) {
+			if ( ! $this->_fs->has_active_valid_license() ) {
 				/**
 				 * If user has the premium plugin's code but do NOT have an active license,
 				 * encourage him to upgrade by showing that there's a new release, but instead
@@ -105,6 +105,9 @@
 		 *
 		 * @author Vova Feldman (@svovaf)
 		 * @since  1.1.6
+		 *
+		 * @param string $file
+		 * @param array $plugin_data
 		 */
 		function edit_and_echo_plugin_update_row( $file, $plugin_data ) {
 			$plugin_update_row = ob_get_clean();
@@ -113,7 +116,7 @@
 			if ( ! isset( $current->response[ $file ] ) ) {
 				echo $plugin_update_row;
 
-				return false;
+				return;
 			}
 
 			$r = $current->response[ $file ];
@@ -171,10 +174,20 @@
 		function pre_set_site_transient_update_plugins_filter( $transient_data ) {
 			$this->_logger->entrance();
 
-			// "plugins" or "themes".
+			/**
+			 * "plugins" or "themes".
+			 *
+			 * @author Leo Fajardo (@leorw)
+			 * @since 1.2.2
+			 */
 			$module_type = $this->_fs->get_module_type() . 's';
 
-			// Ensure that we don't mix plugins update info with themes update info.
+			/**
+			 * Ensure that we don't mix plugins update info with themes update info.
+			 *
+			 * @author Leo Fajardo (@leorw)
+			 * @since 1.2.2
+			 */
 			if ( "pre_set_site_transient_update_{$module_type}" !== current_filter() ) {
 				return $transient_data;
 			}

@@ -10,11 +10,12 @@
 		exit;
 	}
 
-	$slug = $VARS['slug'];
 	/**
 	 * @var Freemius
 	 */
-	$fs = freemius( $slug );
+	$fs = freemius( $VARS['id'] );
+
+	$slug = $fs->get_slug();
 
 	$open_addon_slug = fs_request_get( 'slug' );
 
@@ -130,13 +131,12 @@
 			<?php else : ?>
 
 
-			$('.fs-card.fs-addon').mouseover(function(){
-				$(this).find('.fs-cta .button').addClass('button-primary');
-			});
-
-			$('.fs-card.fs-addon').mouseout(function(){
-				$(this).find('.fs-cta .button').removeClass('button-primary');
-			});
+			$('.fs-card.fs-addon')
+				.mouseover(function () {
+					$(this).find('.fs-cta .button').addClass('button-primary');
+				}).mouseout(function () {
+					$(this).find('.fs-cta .button').removeClass('button-primary');
+				});
 
 			<?php endif ?>
 		})(jQuery);

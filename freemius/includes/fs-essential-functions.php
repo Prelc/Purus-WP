@@ -1,5 +1,10 @@
 <?php
 	/**
+	 * IMPORTANT:
+	 *      This file will be loaded based on the order of the plugins/themes load.
+	 *      If there's a theme and a plugin using Freemius, the plugin's essential
+	 *      file will always load first.
+	 *
 	 * @package     Freemius
 	 * @copyright   Copyright (c) 2015, Freemius, Inc.
 	 * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
@@ -124,86 +129,6 @@
 
 	#endregion Core Redirect (copied from BuddyPress) -----------------------------------------
 
-	if ( ! function_exists( '__fs' ) ) {
-		global $fs_text_overrides;
-
-		if ( ! isset( $fs_text_overrides ) ) {
-			$fs_text_overrides = array();
-		}
-
-		/**
-		 * Retrieve a translated text by key.
-		 *
-		 * @author Vova Feldman (@svovaf)
-		 * @since  1.1.4
-		 *
-		 * @param string $key
-		 * @param string $slug
-		 *
-		 * @return string
-		 *
-		 * @global       $fs_text , $fs_text_overrides
-		 */
-		function __fs( $key, $slug = 'freemius' ) {
-			global $fs_text, $fs_text_overrides;
-
-			if ( ! isset( $fs_text ) ) {
-				require_once( ( defined( 'WP_FS__DIR_INCLUDES' ) ? WP_FS__DIR_INCLUDES : dirname( __FILE__ ) ) . '/i18n.php' );
-			}
-
-			if ( isset( $fs_text_overrides[ $slug ] ) ) {
-				if ( isset( $fs_text_overrides[ $slug ][ $key ] ) ) {
-					return $fs_text_overrides[ $slug ][ $key ];
-				}
-
-				$lower_key = strtolower( $key );
-				if ( isset( $fs_text_overrides[ $slug ][ $lower_key ] ) ) {
-					return $fs_text_overrides[ $slug ][ $lower_key ];
-				}
-			}
-
-			return isset( $fs_text[ $key ] ) ?
-				$fs_text[ $key ] :
-				$key;
-		}
-
-		/**
-		 * Display a translated text by key.
-		 *
-		 * @author Vova Feldman (@svovaf)
-		 * @since  1.1.4
-		 *
-		 * @param string $key
-		 * @param string $slug
-		 */
-		function _efs( $key, $slug = 'freemius' ) {
-			echo __fs( $key, $slug );
-		}
-
-		/**
-		 * Override default i18n text phrases.
-		 *
-		 * @author Vova Feldman (@svovaf)
-		 * @since  1.1.6
-		 *
-		 * @param string[] $key_value
-		 * @param string   $slug
-		 *
-		 * @global         $fs_text_overrides
-		 */
-		function fs_override_i18n( array $key_value, $slug = 'freemius' ) {
-			global $fs_text_overrides;
-
-			if ( ! isset( $fs_text_overrides[ $slug ] ) ) {
-				$fs_text_overrides[ $slug ] = array();
-			}
-
-			foreach ( $key_value as $key => $value ) {
-				$fs_text_overrides[ $slug ][ $key ] = $value;
-			}
-		}
-	}
-
 	if ( ! function_exists( 'fs_get_ip' ) ) {
 		/**
 		 * Get client IP.
@@ -270,7 +195,7 @@
 
 		if ( is_null( $plugin_file ) ) {
 			// Throw an error to the developer in case of some edge case dev environment.
-			wp_die( __fs( 'failed-finding-main-path' ), __fs( 'error' ), array( 'back_link' => true ) );
+			wp_die( 'Freemius SDK couldn\'t find the plugin\'s main file. Please contact sdk@freemius.com with the current error.', 'Error', array( 'back_link' => true ) );
 		}
 
 		return $plugin_file;
@@ -290,6 +215,20 @@
 	 * @global            $fs_active_plugins
 	 */
 	function fs_update_sdk_newest_version( $sdk_relative_path, $plugin_file = false ) {
+		/**
+		 * If there is a plugin running an older version of FS (1.2.1 or below), the `fs_update_sdk_newest_version()`
+		 * function in the older version will be used instead of this one. But since the older version is using
+		 * the `is_plugin_active` function to check if a plugin is active, passing the theme's `plugin_path` to the
+		 * `is_plugin_active` function will return false since the path is not a plugin path, so `in_activation` will be
+		 * `true` for theme modules and the upgrading of the SDK version to 1.2.2 or newer version will work fine.
+		 *
+		 * Future versions that will call this function will use the proper logic here instead of just relying on the
+		 * `is_plugin_active` function to fail for themes.
+		 *
+		 * @author Leo Fajardo (@leorw)
+		 * @since  1.2.2
+		 */
+
 		global $fs_active_plugins;
 
 		$newest_sdk = $fs_active_plugins->plugins[ $sdk_relative_path ];
@@ -301,7 +240,7 @@
 		if ( ! isset( $newest_sdk->type ) || 'theme' !== $newest_sdk->type ) {
 			$in_activation = ( ! is_plugin_active( $plugin_file ) );
 		} else {
-			$theme = wp_get_theme();
+			$theme         = wp_get_theme();
 			$in_activation = ( $newest_sdk->plugin_path != $theme->stylesheet );
 		}
 
@@ -363,6 +302,9 @@
 	function fs_fallback_to_newest_active_sdk() {
 		global $fs_active_plugins;
 
+		/**
+		 * @var object $newest_sdk_data
+		 */
 		$newest_sdk_data = null;
 		$newest_sdk_path = null;
 
@@ -401,19 +343,19 @@
 	 * @author Vova Feldman (@svovaf)
 	 * @since  1.0.9
 	 *
-	 * @param string $slug  Plugin slug
-	 * @param string $tag   The name of the filter hook.
-	 * @param mixed  $value The value on which the filters hooked to `$tag` are applied on.
+	 * @param string $module_unique_affix Module's unique affix.
+	 * @param string $tag                 The name of the filter hook.
+	 * @param mixed  $value               The value on which the filters hooked to `$tag` are applied on.
 	 *
 	 * @return mixed The filtered value after all hooked functions are applied to it.
 	 *
 	 * @uses   apply_filters()
 	 */
-	function fs_apply_filter( $slug, $tag, $value ) {
+	function fs_apply_filter( $module_unique_affix, $tag, $value ) {
 		$args = func_get_args();
 
 		return call_user_func_array( 'apply_filters', array_merge(
-				array( 'fs_' . $tag . '_' . $slug ),
+				array( 'fs_' . $tag . '_' . $module_unique_affix ),
 				array_slice( $args, 2 ) )
 		);
 	}

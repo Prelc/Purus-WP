@@ -13,34 +13,61 @@
 	$fs_options      = FS_Option_Manager::get_manager( WP_FS__ACCOUNTS_OPTION_NAME, true );
 	$plugins         = $fs_options->get_option( 'plugins' );
 	$scheduled_crons = array();
-	if ( is_array( $plugins ) && 0 < count( $plugins ) ) {
-		foreach ( $plugins as $slug => $data ) {
-			$fs             = freemius( $slug );
 
-			$next_execution = $fs->next_sync_cron();
-			$last_execution = $fs->last_sync_cron();
+	$module_types = array(
+		WP_FS__MODULE_TYPE_PLUGIN,
+		WP_FS__MODULE_TYPE_THEME
+	);
 
-			if ( false !== $next_execution ) {
-				$scheduled_crons[ $slug ][] = array(
-					'name' => $fs->get_plugin_name(),
-					'slug' => $slug,
-					'type' => 'sync_cron',
-					'last' => $last_execution,
-					'next' => $next_execution,
-				);
-			}
+	foreach ( $module_types as $module_type ) {
+		$modules = $fs_options->get_option( $module_type . 's' );
+		if ( is_array( $modules ) && count( $modules ) > 0 ) {
+			foreach ( $modules as $slug => $data ) {
+				if ( WP_FS__MODULE_TYPE_THEME === $module_type ) {
+					$current_theme = wp_get_theme();
+					$is_active = ( $current_theme->stylesheet === $data->file );
+				} else {
+					$is_active = is_plugin_active( $data->file );
+				}
 
-			$next_install_execution = $fs->next_install_sync();
-			$last_install_execution = $fs->last_install_sync();
+				/**
+				 * @author Vova Feldman
+				 *
+				 * @since 1.2.1 Don't load data from inactive modules.
+				 */
+				if ( $is_active ) {
+					$fs = freemius( $data->id );
 
-			if ( false !== $next_install_execution || false !== $last_install_execution ) {
-				$scheduled_crons[ $slug ][] = array(
-					'name' => $fs->get_plugin_name(),
-					'slug' => $slug,
-					'type' => 'install_sync',
-					'last' => $last_install_execution,
-					'next' => $next_install_execution,
-				);
+					$next_execution = $fs->next_sync_cron();
+					$last_execution = $fs->last_sync_cron();
+
+					if ( false !== $next_execution ) {
+						$scheduled_crons[ $slug ][] = array(
+							'name' => $fs->get_plugin_name(),
+							'slug' => $slug,
+							'module_type' => $fs->get_module_type(),
+							'type' => 'sync_cron',
+							'last' => $last_execution,
+							'next' => $next_execution,
+						);
+					}
+
+					$next_install_execution = $fs->next_install_sync();
+					$last_install_execution = $fs->last_install_sync();
+
+					if (false !== $next_install_execution ||
+						false !== $last_install_execution
+					) {
+						$scheduled_crons[ $slug ][] = array(
+							'name' => $fs->get_plugin_name(),
+							'slug' => $slug,
+							'module_type' => $fs->get_module_type(),
+							'type' => 'install_sync',
+							'last' => $last_install_execution,
+							'next' => $next_install_execution,
+						);
+					}
+				}
 			}
 		}
 	}
@@ -50,8 +77,9 @@
 	<thead>
 	<tr>
 		<th><?php _efs( 'slug' ) ?></th>
-		<th><?php _efs( 'plugin' ) ?></th>
-		<th><?php _efs( 'type' ) ?></th>
+		<th><?php _efs( 'module' ) ?></th>
+		<th><?php _efs( 'module-type' ) ?></th>
+		<th><?php _efs( 'cron-type' ) ?></th>
 		<th><?php _efs( 'Last' ) ?></th>
 		<th><?php _efs( 'Next' ) ?></th>
 	</tr>
@@ -62,9 +90,10 @@
 			<tr>
 				<td><?php echo $slug ?></td>
 				<td><?php echo $cron['name'] ?></td>
+				<td><?php echo $cron['module_type'] ?></td>
 				<td><?php echo $cron['type'] ?></td>
 				<td><?php
-						if (is_numeric($cron['last'])) {
+						if ( is_numeric( $cron['last'] ) ) {
 							$diff       = abs( WP_FS__SCRIPT_START_TIME - $cron['last'] );
 							$human_diff = ( $diff < MINUTE_IN_SECONDS ) ?
 								$diff . ' ' . __fs( 'sec' ) :
@@ -80,7 +109,7 @@
 						}
 					?></td>
 				<td><?php
-						if (is_numeric($cron['next'])) {
+						if ( is_numeric( $cron['next'] ) ) {
 							$diff       = abs( WP_FS__SCRIPT_START_TIME - $cron['next'] );
 							$human_diff = ( $diff < MINUTE_IN_SECONDS ) ?
 								$diff . ' ' . __fs( 'sec' ) :

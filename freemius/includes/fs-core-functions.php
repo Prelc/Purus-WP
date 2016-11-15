@@ -19,6 +19,14 @@
 		}
 	}
 
+	if ( ! function_exists( 'starts_with' ) ) {
+		function starts_with( $haystack, $needle ) {
+			$length = strlen( $needle );
+
+			return ( substr( $haystack, 0, $length ) === $needle );
+		}
+	}
+
 	/* Url.
 	--------------------------------------------------------------------------------------------*/
 	function fs_get_url_daily_cache_killer() {
@@ -79,7 +87,7 @@
 	 *    URL: http://fswp:8080/wp-content/plugins/rating-widget-premium/freemius/assets/css/admin/common.css
 	 *
 	 * @author Leo Fajardo (@leorw)
-	 * @since  1.2.0
+	 * @since  1.2.2
 	 *
 	 * @param  string $asset_abs_path Asset's absolute path.
 	 *
@@ -196,7 +204,7 @@
 	/* Core UI.
 	--------------------------------------------------------------------------------------------*/
 	/**
-	 * @param string      $slug
+	 * @param number      $module_id
 	 * @param string      $page
 	 * @param string      $action
 	 * @param string      $title
@@ -209,7 +217,7 @@
 	 * @uses fs_ui_get_action_button()
 	 */
 	function fs_ui_action_button(
-		$slug,
+		$module_id,
 		$page,
 		$action,
 		$title,
@@ -220,7 +228,7 @@
 		$method = 'GET'
 	) {
 		echo fs_ui_get_action_button(
-			$slug,
+			$module_id,
 			$page,
 			$action,
 			$title,
@@ -236,7 +244,7 @@
 	 * @author Vova Feldman (@svovaf)
 	 * @since  1.1.7
 	 *
-	 * @param string      $slug
+	 * @param number      $module_id
 	 * @param string      $page
 	 * @param string      $action
 	 * @param string      $title
@@ -249,7 +257,7 @@
 	 * @return string
 	 */
 	function fs_ui_get_action_button(
-		$slug,
+		$module_id,
 		$page,
 		$action,
 		$title,
@@ -264,7 +272,7 @@
 
 		if ( is_string( $confirmation ) ) {
 			return sprintf( '<form action="%s" method="%s"><input type="hidden" name="fs_action" value="%s">%s<a href="#" class="%s" onclick="if (confirm(\'%s\')) this.parentNode.submit(); return false;">%s</a></form>',
-				freemius( $slug )->_get_admin_page_url( $page, $params ),
+				freemius( $module_id )->_get_admin_page_url( $page, $params ),
 				$method,
 				$action,
 				wp_nonce_field( $action, '_wpnonce', true, false ),
@@ -274,7 +282,7 @@
 			);
 		} else if ( 'GET' !== strtoupper( $method ) ) {
 			return sprintf( '<form action="%s" method="%s"><input type="hidden" name="fs_action" value="%s">%s<a href="#" class="%s" onclick="this.parentNode.submit(); return false;">%s</a></form>',
-				freemius( $slug )->_get_admin_page_url( $page, $params ),
+				freemius( $module_id )->_get_admin_page_url( $page, $params ),
 				$method,
 				$action,
 				wp_nonce_field( $action, '_wpnonce', true, false ),
@@ -283,16 +291,16 @@
 			);
 		} else {
 			return sprintf( '<a href="%s" class="%s">%s</a></form>',
-				wp_nonce_url( freemius( $slug )->_get_admin_page_url( $page, array_merge( $params, array( 'fs_action' => $action ) ) ), $action ),
+				wp_nonce_url( freemius( $module_id )->_get_admin_page_url( $page, array_merge( $params, array( 'fs_action' => $action ) ) ), $action ),
 				'button' . ( $is_primary ? ' button-primary' : '' ),
 				$title
 			);
 		}
 	}
 
-	function fs_ui_action_link( $slug, $page, $action, $title, $params = array() ) {
+	function fs_ui_action_link( $module_id, $page, $action, $title, $params = array() ) {
 		?><a class=""
-		     href="<?php echo wp_nonce_url( freemius( $slug )->_get_admin_page_url( $page, array_merge( $params, array( 'fs_action' => $action ) ) ), $action ) ?>"><?php echo $title ?></a><?php
+		     href="<?php echo wp_nonce_url( freemius( $module_id )->_get_admin_page_url( $page, array_merge( $params, array( 'fs_action' => $action ) ) ), $action ) ?>"><?php echo $title ?></a><?php
 	}
 
 	/*function fs_error_handler($errno, $errstr, $errfile, $errline)
@@ -389,7 +397,7 @@
 				return '';
 			}
 
-			// Urlencode both keys and values
+			// Url encode both keys and values
 			$keys   = fs_urlencode_rfc3986( array_keys( $params ) );
 			$values = fs_urlencode_rfc3986( array_values( $params ) );
 			$params = array_combine( $keys, $values );
@@ -403,7 +411,9 @@
 				$lower_param = strtolower( $parameter );
 
 				// Skip ignore params.
-				if ( in_array( $lower_param, $ignore_params ) || ( false !== $params_prefix && startsWith( $lower_param, $params_prefix ) ) ) {
+				if ( in_array( $lower_param, $ignore_params ) ||
+				     ( false !== $params_prefix && starts_with( $lower_param, $params_prefix ) )
+				) {
 					continue;
 				}
 
@@ -449,14 +459,25 @@
 
 	#endregion Url Canonization ------------------------------------------------------------------
 
+	/**
+	 * @author Vova Feldman (@svovaf)
+	 *
+	 * @since 1.2.2 Changed to usage of WP_Filesystem_Direct.
+	 *
+	 * @param string $from URL
+	 * @param string $to   File path.
+	 */
 	function fs_download_image( $from, $to ) {
-		$ch = curl_init( $from );
-		$fp = fopen( fs_normalize_path( $to ), 'wb' );
-		curl_setopt( $ch, CURLOPT_FILE, $fp );
-		curl_setopt( $ch, CURLOPT_HEADER, 0 );
-		curl_exec( $ch );
-		curl_close( $ch );
-		fclose( $fp );
+		$dir = dirname( $to );
+
+		if ( 'direct' !== get_filesystem_method( array(), $dir ) ) {
+			return;
+		}
+
+		$fs      = new WP_Filesystem_Direct( '' );
+		$tmpfile = download_url( $from );
+		$fs->copy( $tmpfile, $to );
+		$fs->delete( $tmpfile );
 	}
 
 	/* General Utilities
@@ -490,3 +511,97 @@
 		return ( $a['priority'] < $b['priority'] ) ? - 1 : 1;
 	}
 
+	/**
+	 * VERY IMPORTANT ----------------------------------------------
+	 *
+	 * @todo IMPORTANT - After merging to main branch rename _efs() to fs_echo() and __fs() to fs_translate(). Otherwise, if a there's a plugin that runs version < 1.2.2 some of the translation in the plugin dialog will not be translated correctly.
+	 *
+	 * VERY IMPORTANT ----------------------------------------------
+	 */
+	if ( ! function_exists( '__fs' ) ) {
+		global $fs_text_overrides;
+
+		if ( ! isset( $fs_text_overrides ) ) {
+			$fs_text_overrides = array();
+		}
+
+		/**
+		 * Retrieve a translated text by key.
+		 *
+		 * @author Vova Feldman (@svovaf)
+		 * @since  1.1.4
+		 *
+		 * @param string $key
+		 * @param string $slug
+		 *
+		 * @return string
+		 *
+		 * @global       $fs_text , $fs_text_overrides
+		 */
+		function __fs( $key, $slug = 'freemius' ) {
+			global $fs_text, $fs_module_info_text, $fs_text_overrides;
+
+			if ( isset( $fs_text_overrides[ $slug ] ) ) {
+				if ( isset( $fs_text_overrides[ $slug ][ $key ] ) ) {
+					return $fs_text_overrides[ $slug ][ $key ];
+				}
+
+				$lower_key = strtolower( $key );
+				if ( isset( $fs_text_overrides[ $slug ][ $lower_key ] ) ) {
+					return $fs_text_overrides[ $slug ][ $lower_key ];
+				}
+			}
+
+			if ( ! isset( $fs_text ) ) {
+				require_once( ( defined( 'WP_FS__DIR_INCLUDES' ) ? WP_FS__DIR_INCLUDES : dirname( __FILE__ ) ) . '/i18n.php' );
+			}
+
+			if ( isset( $fs_text[ $key ] ) ) {
+				return $fs_text[ $key ];
+			}
+
+			if ( isset( $fs_module_info_text[ $key ] ) ) {
+				return $fs_module_info_text[ $key ];
+			}
+
+			return $key;
+		}
+
+		/**
+		 * Display a translated text by key.
+		 *
+		 * @author Vova Feldman (@svovaf)
+		 * @since  1.1.4
+		 *
+		 * @param string $key
+		 * @param string $slug
+		 */
+		function _efs( $key, $slug = 'freemius' ) {
+			echo __fs( $key, $slug );
+		}
+	}
+
+	if ( ! function_exists( 'fs_override_i18n' ) ) {
+		/**
+		 * Override default i18n text phrases.
+		 *
+		 * @author Vova Feldman (@svovaf)
+		 * @since  1.1.6
+		 *
+		 * @param string[] $key_value
+		 * @param string   $slug
+		 *
+		 * @global         $fs_text_overrides
+		 */
+		function fs_override_i18n( array $key_value, $slug = 'freemius' ) {
+			global $fs_text_overrides;
+
+			if ( ! isset( $fs_text_overrides[ $slug ] ) ) {
+				$fs_text_overrides[ $slug ] = array();
+			}
+
+			foreach ( $key_value as $key => $value ) {
+				$fs_text_overrides[ $slug ][ $key ] = $value;
+			}
+		}
+	}
