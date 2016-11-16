@@ -1,0 +1,56 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "ee43f81ff0f878007e62121a66786645",
+    "content-hash": "31e5e92be0494e51b47925660ac27132",
+    "packages": [
+        {
+            "name": "freemius/wordpress-sdk",
+            "version": "dev-feature/fs-theme-mode-v2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Freemius/wordpress-sdk.git",
+                "reference": "57ed37e01bdbd54b2d3090a6427e1eb7e7cfa595"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Freemius/wordpress-sdk/zipball/57ed37e01bdbd54b2d3090a6427e1eb7e7cfa595",
+                "reference": "57ed37e01bdbd54b2d3090a6427e1eb7e7cfa595",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2"
+            },
+            "type": "library",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Freemius WordPress SDK",
+            "homepage": "https://freemius.com",
+            "keywords": [
+                "freemius",
+                "plugin",
+                "sdk",
+                "wordpress"
+            ],
+            "support": {
+                "source": "https://github.com/Freemius/wordpress-sdk/tree/feature/fs-theme-mode-v2",
+                "issues": "https://github.com/Freemius/wordpress-sdk/issues"
+            },
+            "time": "2016-11-12 19:53:01"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "freemius/wordpress-sdk": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}
