@@ -8,7 +8,9 @@
     <span class="meta__item  meta__item--author"><?php esc_html_e( 'by ' , 'purus' ); ?><?php the_author_posts_link(); ?></span>
   <?php endif; ?>
   <?php if ( 'hide' !== get_theme_mod( 'meta_date', 'show' ) ) : ?>
-  <time datetime="<?php the_time( 'c' ); ?>" class="meta__item  meta__item--date"><?php echo get_the_date(); ?></time>
+  <a class="meta__item  meta__item--date" href="<?php the_permalink(); ?>">
+    <time datetime="<?php the_time( 'c' ); ?>"><?php echo get_the_date(); ?></time>
+  </a>
   <?php endif; ?>
   <?php if ( 'hide' !== get_theme_mod( 'meta_comment_number', 'show' ) ) : ?>
     <?php if ( comments_open() ) { ?>

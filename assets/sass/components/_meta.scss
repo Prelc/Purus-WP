@@ -65,6 +65,14 @@
 			}
 		}
 
+		&--date {
+			color: $gray-light;
+
+			&:hover {
+				color: $gray-light;
+			}
+		}
+
 		&--comments {
 			color: $gray-light;
 

@@ -3383,6 +3383,10 @@ pre {
       color: #555555; }
       .meta__item--author a:focus, .meta__item--author a:hover {
         color: #555555; }
+    .meta__item--date {
+      color: #888888; }
+      .meta__item--date:hover {
+        color: #888888; }
     .meta__item--comments {
       color: #888888; }
       .meta__item--comments:hover {
@@ -3767,8 +3771,6 @@ pre {
 
 /*------------------------------------*	The End :)
 \*------------------------------------*/
-/*# sourceMappingURL=style.css.map */
-
 /*# sourceMappingURL=style.css.map */
 
 /*# sourceMappingURL=style.css.map */
