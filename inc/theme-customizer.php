@@ -19,6 +19,14 @@ function purus_customizer( $wp_customize ) {
 		)
 	);
 
+	$wp_customize->add_section(
+		'panel_theme-info',
+		array(
+			'priority' => 15,
+			'title' => __( 'Theme Info', 'purus' ),
+		)
+	);
+
 	/**
 	 * Sections
 	 */
@@ -620,6 +628,27 @@ function purus_customizer( $wp_customize ) {
 		'type'        => 'textarea',
 		'label'       => __( 'Custom CSS', 'purus' ),
 		'section'     => 'section_custom_code',
+	) );
+
+	// Theme Info
+	$wp_customize->add_setting(
+		'theme_info_text',
+		array(
+			'sanitize_callback' => 'wp_kses_post',
+		)
+	);
+
+	$wp_customize->add_control( 'theme_info_text', array(
+		'type'        => 'hidden',
+		'priority'    => 5,
+		'description' => sprintf( esc_html__( '%1$sView demo%2$s %3$s %4$sPurus on GitHub%2$s %3$s %5$sBuy me a beer%2$s' , 'purus' ),
+		'<b><a style="display: block; font-style: normal; height: 45px; line-height: 45px;" class="button" href="http://www.prelc.si/purus/" target="_blank">',
+		'</a></b>',
+		'<hr>',
+		'<b><a style="display: block; font-style: normal; height: 45px; line-height: 45px;" class="button" href="https://github.com/Prelc/Purus-WP" target="_blank">',
+		'<b><a style="display: block; font-style: normal; height: 45px; line-height: 45px;" class="button" href="https://paypal.me/prelc" target="_blank">'
+		),
+		'section'     => 'panel_theme-info',
 	) );
 
 }
